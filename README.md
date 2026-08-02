@@ -1,58 +1,577 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Basic E-Commerce Web Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A basic ecommerce web application developed using Laravel 13, MySQL, Blade, Tailwind CSS, and Alpine.js.
 
-## About Laravel
+The system allows customers to browse products, manage their shopping cart, place orders, and view their order history. It also includes an admin panel for managing products, categories, inventory, customers, and orders.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## Student Information
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+* **Name:** Rakib Hossain
+* **Student ID:** 41240102110
+* **GitHub Repository:** https://github.com/rakib6120/ecommerce-nub
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Project Overview
 
-## Learning Laravel
+This project is a basic ecommerce platform designed for academic purposes.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+The application contains two primary user roles:
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Customer
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+Customers can:
 
-## Agentic Development
+* Register and log in
+* Browse available products
+* Search and filter products
+* View product details
+* Select product size or color
+* Add products to the shopping cart
+* Update cart quantities
+* Remove products from the cart
+* Place orders
+* View previous orders
+* Manage profile and delivery information
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Administrator
+
+Administrators can:
+
+* Access the admin dashboard
+* Manage product categories
+* Add, update, and delete products
+* Manage product images
+* Manage product variants
+* Update product stock
+* View customer information
+* Manage customer orders
+* Update order status
+* Manage coupons and discounts
+* View basic sales information
+
+## Tools and Technologies
+
+### Laravel 13
+
+Laravel is used as the main backend framework.
+
+It handles:
+
+* Application routing
+* Authentication
+* Authorization
+* Business logic
+* Form validation
+* Database operations
+* Cart management
+* Order processing
+* File uploads
+* Email notifications
+
+### MySQL
+
+MySQL is used as the relational database management system.
+
+It stores:
+
+* Users
+* Categories
+* Products
+* Product variants
+* Product images
+* Shopping carts
+* Orders
+* Order items
+* Payments
+* Reviews
+* Inventory information
+
+### Blade
+
+Blade is Laravel's server-side templating engine.
+
+It is used to create:
+
+* Main layouts
+* Navigation bars
+* Product pages
+* Cart pages
+* Checkout pages
+* Customer dashboard
+* Admin dashboard
+
+### Tailwind CSS
+
+Tailwind CSS is used for designing and styling the user interface.
+
+It provides:
+
+* Responsive layouts
+* Product grids
+* Forms
+* Buttons
+* Tables
+* Navigation menus
+* Status badges
+* Mobile-friendly designs
+
+### Alpine.js
+
+Alpine.js is used to provide lightweight frontend interactivity.
+
+It is used for:
+
+* Dropdown menus
+* Mobile navigation
+* Product image galleries
+* Product quantity controls
+* Modal windows
+* Cart drawers
+* Size and color selection
+* Confirmation messages
+
+### Vite
+
+Vite is used to compile and bundle the project's CSS and JavaScript files.
+
+### Git and GitHub
+
+Git is used for version control, while GitHub is used to store and manage the project repository.
+
+## Main Features
+
+### Authentication
+
+* Customer registration
+* Customer login
+* Customer logout
+* Password reset
+* Profile management
+* Admin authentication
+
+### Product Management
+
+* Product listing
+* Product details
+* Product categories
+* Product images
+* Product variants
+* Product pricing
+* Product stock management
+* Featured products
+* Active and inactive product status
+
+### Search and Filtering
+
+Customers can search and filter products using:
+
+* Product name
+* Category
+* Price range
+* Size
+* Color
+* Availability
+
+### Shopping Cart
+
+* Add products to cart
+* Update product quantity
+* Remove products from cart
+* Calculate subtotal
+* Calculate delivery charge
+* Calculate discount
+* Calculate final total
+
+### Checkout
+
+The checkout process includes:
+
+* Customer information
+* Phone number
+* Email address
+* Delivery address
+* City and area
+* Customer notes
+* Delivery charge
+* Payment method
+* Order confirmation
+
+### Order Management
+
+Available order statuses may include:
+
+* Pending
+* Confirmed
+* Processing
+* Shipped
+* Delivered
+* Cancelled
+* Returned
+
+Available payment statuses may include:
+
+* Unpaid
+* Pending
+* Paid
+* Failed
+* Refunded
+
+### Inventory Management
+
+* Track available product stock
+* Reduce stock after order placement
+* Restore stock after eligible order cancellation
+* Prevent customers from ordering unavailable quantities
+* Display low-stock products in the admin panel
+
+### Admin Dashboard
+
+The admin dashboard may display:
+
+* Total products
+* Total customers
+* Total orders
+* Pending orders
+* Delivered orders
+* Total sales
+* Recent orders
+* Low-stock products
+
+## Project Requirements
+
+Before installing the project, make sure the following software is installed:
+
+* PHP 8.3 or later
+* Composer
+* MySQL
+* Node.js
+* NPM
+* Git
+
+## Installation
+
+### 1. Clone the Repository
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/rakib6120/ecommerce-nub.git
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+### 2. Enter the Project Directory
 
-## Contributing
+```bash
+cd ecommerce-nub
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 3. Install PHP Dependencies
 
-## Code of Conduct
+```bash
+composer install
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+### 4. Install Frontend Dependencies
 
-## Security Vulnerabilities
+```bash
+npm install
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### 5. Create the Environment File
+
+```bash
+cp .env.example .env
+```
+
+For Windows Command Prompt:
+
+```bash
+copy .env.example .env
+```
+
+### 6. Generate the Application Key
+
+```bash
+php artisan key:generate
+```
+
+### 7. Configure the Database
+
+Open the `.env` file and update the database configuration:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=ecommerce_nub
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+Create a MySQL database named:
+
+```text
+ecommerce_nub
+```
+
+### 8. Run Database Migrations
+
+```bash
+php artisan migrate
+```
+
+To migrate the database and insert sample data:
+
+```bash
+php artisan migrate --seed
+```
+
+### 9. Create the Storage Link
+
+```bash
+php artisan storage:link
+```
+
+This command makes uploaded product images publicly accessible.
+
+### 10. Start the Laravel Development Server
+
+```bash
+php artisan serve
+```
+
+The application will normally be available at:
+
+```text
+http://127.0.0.1:8000
+```
+
+### 11. Start the Vite Development Server
+
+Open another terminal and run:
+
+```bash
+npm run dev
+```
+
+## Production Build
+
+To compile frontend assets for production, run:
+
+```bash
+npm run build
+```
+
+## Common Development Commands
+
+Run the Laravel application:
+
+```bash
+php artisan serve
+```
+
+Run frontend development assets:
+
+```bash
+npm run dev
+```
+
+Run database migrations:
+
+```bash
+php artisan migrate
+```
+
+Reset and rebuild the database:
+
+```bash
+php artisan migrate:fresh --seed
+```
+
+Clear application caches:
+
+```bash
+php artisan optimize:clear
+```
+
+Run all automated tests:
+
+```bash
+php artisan test
+```
+
+## Suggested Database Tables
+
+The project may contain the following database tables:
+
+```text
+users
+addresses
+categories
+brands
+products
+product_images
+product_variants
+carts
+cart_items
+wishlists
+coupons
+coupon_usages
+orders
+order_items
+payments
+shipments
+reviews
+inventory_movements
+settings
+banners
+```
+
+## Suggested Project Structure
+
+```text
+app/
+├── Actions/
+├── Enums/
+├── Http/
+│   ├── Controllers/
+│   │   ├── Admin/
+│   │   ├── Customer/
+│   │   └── Storefront/
+│   ├── Middleware/
+│   └── Requests/
+├── Models/
+├── Notifications/
+├── Policies/
+├── Services/
+└── View/
+    └── Components/
+
+resources/
+├── css/
+│   └── app.css
+├── js/
+│   └── app.js
+└── views/
+    ├── admin/
+    ├── auth/
+    ├── cart/
+    ├── checkout/
+    ├── components/
+    ├── layouts/
+    ├── orders/
+    └── products/
+```
+
+## Main Application Workflow
+
+```text
+Customer visits the website
+        ↓
+Customer browses products
+        ↓
+Customer views product details
+        ↓
+Customer selects product variant
+        ↓
+Customer adds product to cart
+        ↓
+Customer proceeds to checkout
+        ↓
+System validates product stock
+        ↓
+System calculates the order total
+        ↓
+Customer provides delivery information
+        ↓
+Order is created
+        ↓
+Product stock is updated
+        ↓
+Customer receives order confirmation
+        ↓
+Administrator processes the order
+```
+
+## Security Considerations
+
+The project should implement:
+
+* CSRF protection
+* Server-side form validation
+* Password hashing
+* Authentication middleware
+* Admin authorization
+* Secure file upload validation
+* Database transactions
+* Rate limiting
+* Protection against mass assignment
+* Escaping of customer-generated content
+* Secure storage of environment credentials
+
+Sensitive information must be stored in the `.env` file and must not be committed to GitHub.
+
+Examples include:
+
+```env
+DB_PASSWORD=
+MAIL_PASSWORD=
+PAYMENT_SECRET_KEY=
+```
+
+## Testing
+
+The project should contain tests for:
+
+* Customer registration
+* Customer login
+* Product listing
+* Product search
+* Adding products to the cart
+* Updating cart quantities
+* Preventing orders above available stock
+* Checkout validation
+* Order creation
+* Inventory deduction
+* Admin authorization
+* Product creation
+* Order status updates
+
+Run the tests using:
+
+```bash
+php artisan test
+```
+
+## Future Improvements
+
+The following features may be added in future versions:
+
+* SSLCommerz payment gateway
+* bKash payment integration
+* Nagad payment integration
+* Courier API integration
+* Product reviews and ratings
+* Customer wishlist
+* Advanced coupon management
+* Multiple delivery methods
+* Email and SMS notifications
+* Sales reports
+* Product recommendations
+* Multiple warehouse support
+* Refund management
+* Reward points
+* REST API
+* Mobile application support
+
+## Repository
+
+Project source code:
+
+https://github.com/rakib6120/ecommerce-nub
+
+## Author
+
+**Rakib Hossain**
+
+Student ID: **41240102110**
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is developed for academic and educational purposes.
