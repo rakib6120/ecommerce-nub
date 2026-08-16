@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-016
+Current Task: TASK-017
 
-Last Completed Task: TASK-015
+Last Completed Task: TASK-016
 
 Status: IN_PROGRESS
 
@@ -23,10 +23,10 @@ Status: IN_PROGRESS
 - [x] TASK-013 Add product details route
 - [x] TASK-014 Build product details page
 - [x] TASK-015 Add category filter
+- [x] TASK-016 Add product search
 
 ## Remaining Tasks
 
-- [ ] TASK-016 Add product search
 - [ ] TASK-017 Add customer authentication
 - [ ] TASK-018 Create customer dashboard
 - [ ] TASK-019 Implement session cart service
@@ -198,3 +198,14 @@ pill row to the shop page, highlighting the active filter. Verified:
 `/shop` still returns all 10 products, `/shop?category=electronics` returns
 only the 3 electronics products, and `/shop?category=does-not-exist` shows
 the empty state — all HTTP 200.
+
+TASK-016 (2026-08-16): Added `?search=` support to `ShopController::index()`
+(a `where('name', 'like', '%...%')` clause, applied only
+`when($request->filled('search'))`, combined with the existing category
+`when()` clause so both filters AND together). Added a search box to the
+shop page that preserves the active category as a hidden field, and updated
+the category filter pills to preserve the active search term via
+`array_filter()` on the route params. Verified: `?search=earbuds` returns 1
+matching product, `?search=shirt&category=electronics` returns the empty
+state (no shirts in Electronics), and `?search=shirt&category=mens-clothing`
+returns 1 matching product (the T-Shirt) — all HTTP 200.

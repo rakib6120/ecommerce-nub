@@ -6,13 +6,24 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <h1 class="text-3xl font-bold text-gray-900 mb-6">Shop</h1>
 
+        <form action="{{ route('shop') }}" method="GET" class="mb-6 flex gap-2 max-w-md">
+            @if (request('category'))
+                <input type="hidden" name="category" value="{{ request('category') }}">
+            @endif
+            <input type="text" name="search" value="{{ request('search') }}" placeholder="Search products..."
+                   class="flex-1 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+            <button type="submit" class="bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">
+                Search
+            </button>
+        </form>
+
         <div class="flex flex-wrap gap-2 mb-8">
-            <a href="{{ route('shop') }}"
+            <a href="{{ route('shop', array_filter(['search' => request('search')])) }}"
                class="px-4 py-2 rounded-md text-sm font-medium {{ request('category') ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' : 'bg-indigo-600 text-white' }}">
                 All
             </a>
             @foreach ($categories as $category)
-                <a href="{{ route('shop', ['category' => $category->slug]) }}"
+                <a href="{{ route('shop', array_filter(['category' => $category->slug, 'search' => request('search')])) }}"
                    class="px-4 py-2 rounded-md text-sm font-medium {{ request('category') === $category->slug ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
                     {{ $category->name }}
                 </a>

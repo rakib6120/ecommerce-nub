@@ -18,6 +18,9 @@ class ShopController extends Controller
                     $query->where('slug', $request->query('category'));
                 });
             })
+            ->when($request->filled('search'), function ($query) use ($request) {
+                $query->where('name', 'like', '%'.$request->query('search').'%');
+            })
             ->latest()
             ->get();
 
