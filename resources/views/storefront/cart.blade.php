@@ -47,7 +47,7 @@
                                 </td>
                                 <td class="px-4 py-4 text-gray-900 font-medium">${{ number_format($item['subtotal'], 2) }}</td>
                                 <td class="px-4 py-4 text-right">
-                                    <form action="{{ url('/cart/remove/'.$item['product']->id) }}" method="POST">
+                                    <form action="{{ route('cart.remove', $item['product']) }}" method="POST">
                                         @csrf
                                         <button type="submit" class="text-red-600 hover:underline text-xs font-medium">Remove</button>
                                     </form>

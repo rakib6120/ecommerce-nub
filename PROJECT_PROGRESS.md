@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-023
+Current Task: TASK-024
 
-Last Completed Task: TASK-022
+Last Completed Task: TASK-023
 
 Status: IN_PROGRESS
 
@@ -30,10 +30,10 @@ Status: IN_PROGRESS
 - [x] TASK-020 Add product to cart
 - [x] TASK-021 Display shopping cart
 - [x] TASK-022 Update cart quantity
+- [x] TASK-023 Remove item from cart
 
 ## Remaining Tasks
 
-- [ ] TASK-023 Remove item from cart
 - [ ] TASK-024 Add cart count to navbar
 - [ ] TASK-025 Create orders table
 - [ ] TASK-026 Create order items table
@@ -285,3 +285,10 @@ new named route. Verified: updating a cart item's quantity to a valid value
 (10, within the 60-unit stock) correctly changes the displayed quantity and
 recalculates the total (to $499.90), while an out-of-range update (999)
 fails validation (302 back) and leaves the quantity unchanged.
+
+TASK-023 (2026-08-16): Added `CartController::remove()`
+(`POST /cart/remove/{product}`, name `cart.remove`), calling
+`CartService::remove()` and redirecting to the cart page with a flashed
+success message. Wired the cart page's per-item remove form to the new named
+route. Verified: removing the only item in the cart shows the "was removed
+from your cart" message and the empty-cart state, both on the same page load.

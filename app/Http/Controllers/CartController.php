@@ -48,4 +48,11 @@ class CartController extends Controller
 
         return back()->with('success', 'Cart updated.');
     }
+
+    public function remove(Product $product): RedirectResponse
+    {
+        $this->cart->remove($product->id);
+
+        return redirect()->route('cart')->with('success', '"'.$product->name.'" was removed from your cart.');
+    }
 }
