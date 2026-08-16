@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-026
+Current Task: TASK-027
 
-Last Completed Task: TASK-025
+Last Completed Task: TASK-026
 
 Status: IN_PROGRESS
 
@@ -33,10 +33,10 @@ Status: IN_PROGRESS
 - [x] TASK-023 Remove item from cart
 - [x] TASK-024 Add cart count to navbar
 - [x] TASK-025 Create orders table
+- [x] TASK-026 Create order items table
 
 ## Remaining Tasks
 
-- [ ] TASK-026 Create order items table
 - [ ] TASK-027 Create order models
 - [ ] TASK-028 Build checkout page
 - [ ] TASK-029 Add checkout validation
@@ -307,3 +307,11 @@ TASK-025 (2026-08-16): Added `create_orders_table` migration with `user_id`
 `phone`, `email`, `address` (text), `subtotal` and `total` (decimal 10,2),
 an `status` enum (`pending`/`processing`/`completed`/`cancelled`, default
 `pending`), and timestamps. Ran `php artisan migrate` successfully.
+
+TASK-026 (2026-08-16): Added `create_order_items_table` migration with
+`order_id` (FK to `orders`, cascade on delete), `product_id` (nullable FK to
+`products`, `nullOnDelete` — order item history is preserved via the
+denormalized `product_name`/`price` columns even if the product is later
+deleted, per TASK-047's requirement not to break order history),
+`product_name`, `price` (decimal 10,2), `quantity` (unsigned int), `subtotal`
+(decimal 10,2), and timestamps. Ran `php artisan migrate` successfully.
