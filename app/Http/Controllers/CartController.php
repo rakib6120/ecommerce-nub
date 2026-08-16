@@ -37,4 +37,15 @@ class CartController extends Controller
 
         return back()->with('success', '"'.$product->name.'" was added to your cart.');
     }
+
+    public function update(Request $request, Product $product): RedirectResponse
+    {
+        $validated = $request->validate([
+            'quantity' => ['required', 'integer', 'min:1', 'max:'.$product->stock],
+        ]);
+
+        $this->cart->update($product->id, $validated['quantity']);
+
+        return back()->with('success', 'Cart updated.');
+    }
 }

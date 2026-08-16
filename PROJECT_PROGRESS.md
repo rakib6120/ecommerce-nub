@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-022
+Current Task: TASK-023
 
-Last Completed Task: TASK-021
+Last Completed Task: TASK-022
 
 Status: IN_PROGRESS
 
@@ -29,10 +29,10 @@ Status: IN_PROGRESS
 - [x] TASK-019 Implement session cart service
 - [x] TASK-020 Add product to cart
 - [x] TASK-021 Display shopping cart
+- [x] TASK-022 Update cart quantity
 
 ## Remaining Tasks
 
-- [ ] TASK-022 Update cart quantity
 - [ ] TASK-023 Remove item from cart
 - [ ] TASK-024 Add cart count to navbar
 - [ ] TASK-025 Create orders table
@@ -276,3 +276,12 @@ controller actions) and Checkout links to a plain `/checkout` URL (TASK-028).
 Verified: an empty cart shows the empty-state message, and after adding a
 product via `/cart/add/{id}`, the cart page (HTTP 200) shows the product
 name, Update button, Remove button, and Total.
+
+TASK-022 (2026-08-16): Added `CartController::update()`
+(`POST /cart/update/{product}`, name `cart.update`), validating `quantity`
+as `required|integer|min:1|max:{stock}` before calling
+`CartService::update()`. Wired the cart page's per-item update form to the
+new named route. Verified: updating a cart item's quantity to a valid value
+(10, within the 60-unit stock) correctly changes the displayed quantity and
+recalculates the total (to $499.90), while an out-of-range update (999)
+fails validation (302 back) and leaves the quantity unchanged.

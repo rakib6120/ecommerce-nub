@@ -38,7 +38,7 @@
                                 </td>
                                 <td class="px-4 py-4 text-gray-600">${{ number_format($item['product']->price, 2) }}</td>
                                 <td class="px-4 py-4">
-                                    <form action="{{ url('/cart/update/'.$item['product']->id) }}" method="POST" class="flex items-center gap-2">
+                                    <form action="{{ route('cart.update', $item['product']) }}" method="POST" class="flex items-center gap-2">
                                         @csrf
                                         <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" max="{{ $item['product']->stock }}"
                                                class="w-16 rounded-md border-gray-300 shadow-sm text-sm focus:border-indigo-500 focus:ring-indigo-500">

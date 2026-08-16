@@ -22,6 +22,8 @@ Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
 
+Route::post('/cart/update/{product}', [CartController::class, 'update'])->name('cart.update');
+
 Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
     Route::post('/register', [AuthController::class, 'register'])->name('register.store');
