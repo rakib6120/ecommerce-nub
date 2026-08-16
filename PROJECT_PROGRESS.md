@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-005
+Current Task: TASK-006
 
-Last Completed Task: TASK-004
+Last Completed Task: TASK-005
 
 Status: IN_PROGRESS
 
@@ -12,10 +12,10 @@ Status: IN_PROGRESS
 - [x] TASK-002 Create storefront layout
 - [x] TASK-003 Add basic storefront routes
 - [x] TASK-004 Build home page
+- [x] TASK-005 Build About Us page
 
 ## Remaining Tasks
 
-- [ ] TASK-005 Build About Us page
 - [ ] TASK-006 Create categories table
 - [ ] TASK-007 Create Category model
 - [ ] TASK-008 Create products table
@@ -116,3 +116,7 @@ a featured products placeholder grid (4 static cards), a shop-by-category
 placeholder grid (4 static tiles), and a promotional banner section. No
 database/product data is wired up yet, per task scope. Verified with
 `php artisan serve` (HTTP 200 on `/`).
+
+TASK-005 (2026-08-16): Built out `resources/views/storefront/about.blade.php`
+with a store introduction, a mission section, and a "why choose us" list.
+Verified with `php artisan serve` (HTTP 200 on `/about`).
