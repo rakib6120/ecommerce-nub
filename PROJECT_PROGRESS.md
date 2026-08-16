@@ -1,10 +1,10 @@
 # Project Progress
 
-Current Task: TASK-029
+Current Task: TASK-030
 
-Last Completed Task: TASK-028
+Last Completed Task: TASK-029
 
-Status: IN_PROGRESS
+Status: PAUSED
 
 ## Completed Tasks
 
@@ -36,10 +36,10 @@ Status: IN_PROGRESS
 - [x] TASK-026 Create order items table
 - [x] TASK-027 Create order models
 - [x] TASK-028 Build checkout page
+- [x] TASK-029 Add checkout validation
 
 ## Remaining Tasks
 
-- [ ] TASK-029 Add checkout validation
 - [ ] TASK-030 Implement order placement
 - [ ] TASK-031 Build order confirmation page
 - [ ] TASK-032 Add customer order list
@@ -347,3 +347,22 @@ without `pdo_sqlite`) — a `actingAs()` feature test confirmed an authenticated
 user can add a product to the cart and see it correctly rendered on the
 checkout page. The temporary test file and test database were removed after
 verification; only the checkout controller/view/routes are committed.
+
+TASK-029 (2026-08-16): Added `CheckoutController::store()` and
+`POST /checkout` (name `checkout.store`, inside the `auth` group), validating
+`customer_name`, `email`, `phone`, and `address` as required fields (email
+also validated as a proper email address). On success it currently just
+redirects back with a placeholder success message — TASK-030 will replace
+that body with real order creation. Wired the checkout form to the new named
+route and added `@error` messages under each field. Verified with a
+temporary `RefreshDatabase` feature test (same throwaway
+`ecom-nub-testing` MySQL database/technique as TASK-028, removed afterward):
+submitting empty fields produces validation errors on all four fields, and
+submitting valid data passes validation with no errors.
+
+## Pause Notes
+
+Paused after TASK-029 at the user's request ("you can quit for now after
+your current commit"). The working tree is clean, `PROJECT_PROGRESS.md` is
+up to date, and there is no unfinished/uncommitted work. Resume from
+TASK-030 (Implement order placement).
