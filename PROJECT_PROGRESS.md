@@ -1,18 +1,18 @@
 # Project Progress
 
-Current Task: TASK-002
+Current Task: TASK-003
 
-Last Completed Task: TASK-001
+Last Completed Task: TASK-002
 
 Status: IN_PROGRESS
 
 ## Completed Tasks
 
 - [x] TASK-001 Inspect existing Laravel application
+- [x] TASK-002 Create storefront layout
 
 ## Remaining Tasks
 
-- [ ] TASK-002 Create storefront layout
 - [ ] TASK-003 Add basic storefront routes
 - [ ] TASK-004 Build home page
 - [ ] TASK-005 Build About Us page
@@ -94,3 +94,10 @@ Inspection results (2026-08-16):
   was created and the default migrations run successfully.
 - Git: repository has 2 prior commits (Laravel install, README update). Working
   tree was clean aside from the new `ECOMMERCE_AGENT_RUNBOOK.md`.
+
+TASK-002 (2026-08-16): Added `resources/views/layouts/storefront.blade.php`, a
+reusable Blade layout with navbar (Home/Shop/About/Cart), an auth-aware
+login/register vs. dashboard area (using `@auth`/`@else`, ready for TASK-017),
+a `@yield('content')` main slot, and a footer. Verified with
+`php artisan view:cache` (compiles cleanly); no page content or routes were
+added yet, per task scope.
