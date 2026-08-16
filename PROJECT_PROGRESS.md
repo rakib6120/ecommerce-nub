@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-011
+Current Task: TASK-012
 
-Last Completed Task: TASK-010
+Last Completed Task: TASK-011
 
 Status: IN_PROGRESS
 
@@ -18,10 +18,10 @@ Status: IN_PROGRESS
 - [x] TASK-008 Create products table
 - [x] TASK-009 Create Product model and relationships
 - [x] TASK-010 Add ecommerce seed data
+- [x] TASK-011 Create shop controller
 
 ## Remaining Tasks
 
-- [ ] TASK-011 Create shop controller
 - [ ] TASK-012 Display shop products
 - [ ] TASK-013 Add product details route
 - [ ] TASK-014 Build product details page
@@ -150,3 +150,12 @@ realistic dummy products spread across those categories, slugs generated via
 `Str::slug`), wired into `DatabaseSeeder`. Verified with
 `php artisan migrate:fresh --seed` followed by a tinker check confirming 4
 categories, 10 products, and correct category relationships.
+
+TASK-011 (2026-08-16): Added `App\Http\Controllers\ShopController` with an
+`index()` method that eager-loads `category` and retrieves active (`status`
+= true) products, newest first. Rewired the `/shop` route in `routes/web.php`
+to use `ShopController::class, 'index'` instead of the placeholder closure
+(the existing `storefront.shop` view still just shows placeholder text for
+now; TASK-012 will render the `$products` data). Verified with
+`php artisan migrate:fresh --seed` + `php artisan serve` (HTTP 200 on
+`/shop`).
