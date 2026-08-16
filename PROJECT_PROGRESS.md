@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-020
+Current Task: TASK-021
 
-Last Completed Task: TASK-019
+Last Completed Task: TASK-020
 
 Status: IN_PROGRESS
 
@@ -27,10 +27,10 @@ Status: IN_PROGRESS
 - [x] TASK-017 Add customer authentication
 - [x] TASK-018 Create customer dashboard
 - [x] TASK-019 Implement session cart service
+- [x] TASK-020 Add product to cart
 
 ## Remaining Tasks
 
-- [ ] TASK-020 Add product to cart
 - [ ] TASK-021 Display shopping cart
 - [ ] TASK-022 Update cart quantity
 - [ ] TASK-023 Remove item from cart
@@ -248,3 +248,19 @@ controller/route yet, per task scope (TASK-020 connects the Add to Cart
 button). Verified via a temporary route exercising add/update/remove/total,
 confirmed correct totals and counts, then removed the temporary route before
 committing.
+
+TASK-020 (2026-08-16): Added `App\Http\Controllers\CartController@add`
+(`POST /cart/add/{product}`, name `cart.add`), which validates `quantity`
+(`required|integer|min:1`), checks the product is active and that the
+existing cart quantity plus the new request doesn't exceed `stock` (rejecting
+with a flashed `error` message if so), then calls `CartService::add()` (which
+already increments if the product is present) and flashes a `success`
+message. Wired the product-details Add to Cart form to the new named route
+and added a `@error('quantity')` message under it. Added a minimal
+session-flash `success`/`error` banner to the storefront layout so feedback
+is visible now (a fuller reusable flash component is still planned for
+TASK-053). Verified via `curl` with a cookie jar and CSRF token: adding
+within stock succeeds and shows the success message, requesting more than
+available stock is rejected with the exact remaining count, and an invalid
+quantity (0) redirects back with the "must be at least 1" validation
+message rendered on the page.

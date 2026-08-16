@@ -28,18 +28,23 @@
                     @endif
                 </p>
 
-                <form action="{{ url('/cart/add/'.$product->id) }}" method="POST" class="mt-6 flex items-center gap-4">
+                <form action="{{ route('cart.add', $product) }}" method="POST" class="mt-6">
                     @csrf
-                    <label for="quantity" class="sr-only">Quantity</label>
-                    <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ $product->stock }}"
-                           class="w-20 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
-                           @disabled($product->stock <= 0)>
+                    <div class="flex items-center gap-4">
+                        <label for="quantity" class="sr-only">Quantity</label>
+                        <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ $product->stock }}"
+                               class="w-20 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                               @disabled($product->stock <= 0)>
 
-                    <button type="submit"
-                            class="bg-indigo-600 text-white font-medium px-6 py-2 rounded-md hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
-                            @disabled($product->stock <= 0)>
-                        Add to Cart
-                    </button>
+                        <button type="submit"
+                                class="bg-indigo-600 text-white font-medium px-6 py-2 rounded-md hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed"
+                                @disabled($product->stock <= 0)>
+                            Add to Cart
+                        </button>
+                    </div>
+                    @error('quantity')
+                        <p class="mt-2 text-sm text-red-600">{{ $message }}</p>
+                    @enderror
                 </form>
             </div>
         </div>

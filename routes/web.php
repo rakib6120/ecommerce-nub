@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ShopController;
 use Illuminate\Support\Facades\Route;
@@ -20,6 +21,8 @@ Route::get('/about', function () {
 Route::get('/cart', function () {
     return view('storefront.cart');
 })->name('cart');
+
+Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
 
 Route::middleware('guest')->group(function () {
     Route::get('/register', [AuthController::class, 'showRegister'])->name('register');
