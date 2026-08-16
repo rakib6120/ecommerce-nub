@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-007
+Current Task: TASK-008
 
-Last Completed Task: TASK-006
+Last Completed Task: TASK-007
 
 Status: IN_PROGRESS
 
@@ -14,10 +14,10 @@ Status: IN_PROGRESS
 - [x] TASK-004 Build home page
 - [x] TASK-005 Build About Us page
 - [x] TASK-006 Create categories table
+- [x] TASK-007 Create Category model
 
 ## Remaining Tasks
 
-- [ ] TASK-007 Create Category model
 - [ ] TASK-008 Create products table
 - [ ] TASK-009 Create Product model and relationships
 - [ ] TASK-010 Add ecommerce seed data
@@ -124,3 +124,8 @@ Verified with `php artisan serve` (HTTP 200 on `/about`).
 TASK-006 (2026-08-16): Added `create_categories_table` migration with `name`,
 `slug` (unique), `status` (boolean, default true/active), and timestamps.
 Ran `php artisan migrate` successfully against the MySQL `ecom-nub` database.
+
+TASK-007 (2026-08-16): Added `app/Models/Category.php` with `name`, `slug`,
+`status` fillable (via the `#[Fillable]` attribute, matching the existing
+`User` model's style) and a boolean cast for `status`. Verified with
+`php artisan tinker` by creating and deleting a test record.
