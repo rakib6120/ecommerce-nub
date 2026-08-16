@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-010
+Current Task: TASK-011
 
-Last Completed Task: TASK-009
+Last Completed Task: TASK-010
 
 Status: IN_PROGRESS
 
@@ -17,10 +17,10 @@ Status: IN_PROGRESS
 - [x] TASK-007 Create Category model
 - [x] TASK-008 Create products table
 - [x] TASK-009 Create Product model and relationships
+- [x] TASK-010 Add ecommerce seed data
 
 ## Remaining Tasks
 
-- [ ] TASK-010 Add ecommerce seed data
 - [ ] TASK-011 Create shop controller
 - [ ] TASK-012 Display shop products
 - [ ] TASK-013 Add product details route
@@ -143,3 +143,10 @@ a `category()` belongsTo relationship, and added a `products()` hasMany
 relationship on `Category`. Verified both directions with `php artisan
 tinker` (created a category + product, read `$product->category->name` and
 `$category->products()->count()`, then cleaned up).
+
+TASK-010 (2026-08-16): Added `CategorySeeder` (4 categories: Men's Clothing,
+Women's Clothing, Electronics, Home & Living) and `ProductSeeder` (10
+realistic dummy products spread across those categories, slugs generated via
+`Str::slug`), wired into `DatabaseSeeder`. Verified with
+`php artisan migrate:fresh --seed` followed by a tinker check confirming 4
+categories, 10 products, and correct category relationships.
