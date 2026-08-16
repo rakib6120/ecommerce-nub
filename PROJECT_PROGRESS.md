@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-012
+Current Task: TASK-013
 
-Last Completed Task: TASK-011
+Last Completed Task: TASK-012
 
 Status: IN_PROGRESS
 
@@ -19,10 +19,10 @@ Status: IN_PROGRESS
 - [x] TASK-009 Create Product model and relationships
 - [x] TASK-010 Add ecommerce seed data
 - [x] TASK-011 Create shop controller
+- [x] TASK-012 Display shop products
 
 ## Remaining Tasks
 
-- [ ] TASK-012 Display shop products
 - [ ] TASK-013 Add product details route
 - [ ] TASK-014 Build product details page
 - [ ] TASK-015 Add category filter
@@ -159,3 +159,13 @@ to use `ShopController::class, 'index'` instead of the placeholder closure
 now; TASK-012 will render the `$products` data). Verified with
 `php artisan migrate:fresh --seed` + `php artisan serve` (HTTP 200 on
 `/shop`).
+
+TASK-012 (2026-08-16): Updated `resources/views/storefront/shop.blade.php` to
+render `$products` in a responsive Tailwind grid (2/3/4 columns), each card
+showing an image placeholder (or the stored image via `storage/`), name,
+category name, price, and a "View Details" button linking to
+`/product/{slug}` (route not wired up until TASK-013, following the same
+placeholder-link pattern already used for Login/Register in the layout).
+Added an empty-state message for when there are no products. Verified by
+requesting `/shop` and confirming all 10 seeded product names and "View
+Details" buttons render (HTTP 200).
