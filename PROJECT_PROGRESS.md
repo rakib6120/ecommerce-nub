@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-024
+Current Task: TASK-025
 
-Last Completed Task: TASK-023
+Last Completed Task: TASK-024
 
 Status: IN_PROGRESS
 
@@ -31,10 +31,10 @@ Status: IN_PROGRESS
 - [x] TASK-021 Display shopping cart
 - [x] TASK-022 Update cart quantity
 - [x] TASK-023 Remove item from cart
+- [x] TASK-024 Add cart count to navbar
 
 ## Remaining Tasks
 
-- [ ] TASK-024 Add cart count to navbar
 - [ ] TASK-025 Create orders table
 - [ ] TASK-026 Create order items table
 - [ ] TASK-027 Create order models
@@ -292,3 +292,12 @@ TASK-023 (2026-08-16): Added `CartController::remove()`
 success message. Wired the cart page's per-item remove form to the new named
 route. Verified: removing the only item in the cart shows the "was removed
 from your cart" message and the empty-cart state, both on the same page load.
+
+TASK-024 (2026-08-16): Added a `View::composer('layouts.storefront', ...)` in
+`AppServiceProvider::boot()` that shares a `cartCount` variable (from
+`CartService::count()`) with the storefront layout on every request — a
+single, reusable point rather than passing it from every controller. Updated
+both the desktop and mobile Cart nav links to show a small rounded badge
+with the count when it's greater than 0. Verified: badge is absent (0
+matches) with an empty cart, and shows "4" in both navs after adding 4 units
+of a product.

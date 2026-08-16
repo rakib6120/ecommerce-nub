@@ -21,7 +21,12 @@
                     <a href="{{ url('/') }}" class="hover:text-indigo-600">Home</a>
                     <a href="{{ url('/shop') }}" class="hover:text-indigo-600">Shop</a>
                     <a href="{{ url('/about') }}" class="hover:text-indigo-600">About</a>
-                    <a href="{{ url('/cart') }}" class="hover:text-indigo-600">Cart</a>
+                    <a href="{{ route('cart') }}" class="hover:text-indigo-600">
+                        Cart
+                        @if ($cartCount > 0)
+                            <span class="ml-1 inline-flex items-center justify-center bg-indigo-600 text-white text-xs font-semibold rounded-full h-5 w-5">{{ $cartCount }}</span>
+                        @endif
+                    </a>
                 </nav>
 
                 <div class="flex items-center space-x-4 text-sm font-medium">
@@ -42,7 +47,12 @@
                 <a href="{{ url('/') }}" class="hover:text-indigo-600">Home</a>
                 <a href="{{ url('/shop') }}" class="hover:text-indigo-600">Shop</a>
                 <a href="{{ url('/about') }}" class="hover:text-indigo-600">About</a>
-                <a href="{{ url('/cart') }}" class="hover:text-indigo-600">Cart</a>
+                <a href="{{ route('cart') }}" class="hover:text-indigo-600">
+                    Cart
+                    @if ($cartCount > 0)
+                        <span class="ml-1 inline-flex items-center justify-center bg-indigo-600 text-white text-xs font-semibold rounded-full h-5 w-5">{{ $cartCount }}</span>
+                    @endif
+                </a>
             </nav>
         </div>
     </header>
