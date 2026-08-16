@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-025
+Current Task: TASK-026
 
-Last Completed Task: TASK-024
+Last Completed Task: TASK-025
 
 Status: IN_PROGRESS
 
@@ -32,10 +32,10 @@ Status: IN_PROGRESS
 - [x] TASK-022 Update cart quantity
 - [x] TASK-023 Remove item from cart
 - [x] TASK-024 Add cart count to navbar
+- [x] TASK-025 Create orders table
 
 ## Remaining Tasks
 
-- [ ] TASK-025 Create orders table
 - [ ] TASK-026 Create order items table
 - [ ] TASK-027 Create order models
 - [ ] TASK-028 Build checkout page
@@ -301,3 +301,9 @@ both the desktop and mobile Cart nav links to show a small rounded badge
 with the count when it's greater than 0. Verified: badge is absent (0
 matches) with an empty cart, and shows "4" in both navs after adding 4 units
 of a product.
+
+TASK-025 (2026-08-16): Added `create_orders_table` migration with `user_id`
+(FK to `users`, cascade on delete), `order_number` (unique), `customer_name`,
+`phone`, `email`, `address` (text), `subtotal` and `total` (decimal 10,2),
+an `status` enum (`pending`/`processing`/`completed`/`cancelled`, default
+`pending`), and timestamps. Ran `php artisan migrate` successfully.
