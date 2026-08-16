@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-013
+Current Task: TASK-014
 
-Last Completed Task: TASK-012
+Last Completed Task: TASK-013
 
 Status: IN_PROGRESS
 
@@ -20,10 +20,10 @@ Status: IN_PROGRESS
 - [x] TASK-010 Add ecommerce seed data
 - [x] TASK-011 Create shop controller
 - [x] TASK-012 Display shop products
+- [x] TASK-013 Add product details route
 
 ## Remaining Tasks
 
-- [ ] TASK-013 Add product details route
 - [ ] TASK-014 Build product details page
 - [ ] TASK-015 Add category filter
 - [ ] TASK-016 Add product search
@@ -169,3 +169,13 @@ placeholder-link pattern already used for Login/Register in the layout).
 Added an empty-state message for when there are no products. Verified by
 requesting `/shop` and confirming all 10 seeded product names and "View
 Details" buttons render (HTTP 200).
+
+TASK-013 (2026-08-16): Added `GET /product/{slug}` (name `product.show`)
+routed to a new `ShopController::show()` method, which looks up an active
+product by slug via `firstOrFail()` (returns 404 for missing/inactive
+products). Added a minimal placeholder view
+`resources/views/storefront/product-details.blade.php` (heading only, full
+layout comes in TASK-014), matching the TASK-003-then-TASK-004 pattern used
+for the home page. Updated the shop page's "View Details" links to use the
+new named route. Verified: existing slug returns HTTP 200, nonexistent slug
+returns HTTP 404.

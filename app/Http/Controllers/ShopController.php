@@ -16,4 +16,14 @@ class ShopController extends Controller
 
         return view('storefront.shop', compact('products'));
     }
+
+    public function show(string $slug): View
+    {
+        $product = Product::with('category')
+            ->where('slug', $slug)
+            ->where('status', true)
+            ->firstOrFail();
+
+        return view('storefront.product-details', compact('product'));
+    }
 }

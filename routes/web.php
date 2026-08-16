@@ -9,6 +9,8 @@ Route::get('/', function () {
 
 Route::get('/shop', [ShopController::class, 'index'])->name('shop');
 
+Route::get('/product/{slug}', [ShopController::class, 'show'])->name('product.show');
+
 Route::get('/about', function () {
     return view('storefront.about');
 })->name('about');

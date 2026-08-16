@@ -23,7 +23,7 @@
                             <p class="font-medium text-gray-900">{{ $product->name }}</p>
                             <p class="text-sm text-gray-500 mt-1">{{ $product->category->name }}</p>
                             <p class="text-indigo-600 font-semibold mt-2">${{ number_format($product->price, 2) }}</p>
-                            <a href="{{ url('/product/'.$product->slug) }}"
+                            <a href="{{ route('product.show', $product->slug) }}"
                                class="mt-auto pt-4 inline-block text-center bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-indigo-700">
                                 View Details
                             </a>
