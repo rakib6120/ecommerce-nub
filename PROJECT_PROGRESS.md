@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-004
+Current Task: TASK-005
 
-Last Completed Task: TASK-003
+Last Completed Task: TASK-004
 
 Status: IN_PROGRESS
 
@@ -11,10 +11,10 @@ Status: IN_PROGRESS
 - [x] TASK-001 Inspect existing Laravel application
 - [x] TASK-002 Create storefront layout
 - [x] TASK-003 Add basic storefront routes
+- [x] TASK-004 Build home page
 
 ## Remaining Tasks
 
-- [ ] TASK-004 Build home page
 - [ ] TASK-005 Build About Us page
 - [ ] TASK-006 Create categories table
 - [ ] TASK-007 Create Category model
@@ -109,3 +109,10 @@ and `/cart` in `routes/web.php`, each with a placeholder Blade view under
 this environment, causing a "Vite manifest not found" 500 error) and verified
 all four routes return HTTP 200 via `php artisan serve`. The old default
 `welcome.blade.php` is no longer routed to but left in place, unused.
+
+TASK-004 (2026-08-16): Built out `resources/views/storefront/home.blade.php`
+with a hero section (heading, subtext, Shop Now button linking to `/shop`),
+a featured products placeholder grid (4 static cards), a shop-by-category
+placeholder grid (4 static tiles), and a promotional banner section. No
+database/product data is wired up yet, per task scope. Verified with
+`php artisan serve` (HTTP 200 on `/`).
