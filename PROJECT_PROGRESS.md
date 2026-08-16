@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-009
+Current Task: TASK-010
 
-Last Completed Task: TASK-008
+Last Completed Task: TASK-009
 
 Status: IN_PROGRESS
 
@@ -16,10 +16,10 @@ Status: IN_PROGRESS
 - [x] TASK-006 Create categories table
 - [x] TASK-007 Create Category model
 - [x] TASK-008 Create products table
+- [x] TASK-009 Create Product model and relationships
 
 ## Remaining Tasks
 
-- [ ] TASK-009 Create Product model and relationships
 - [ ] TASK-010 Add ecommerce seed data
 - [ ] TASK-011 Create shop controller
 - [ ] TASK-012 Display shop products
@@ -137,3 +137,9 @@ app-level check planned for TASK-042), `name`, `slug` (unique), `description`
 (nullable text), `price` (decimal 10,2), `stock` (unsigned int), `image`
 (nullable string path), `status` (boolean, default active), and timestamps.
 Ran `php artisan migrate` successfully.
+
+TASK-009 (2026-08-16): Added `app/Models/Product.php` with fillable fields and
+a `category()` belongsTo relationship, and added a `products()` hasMany
+relationship on `Category`. Verified both directions with `php artisan
+tinker` (created a category + product, read `$product->category->name` and
+`$category->products()->count()`, then cleaned up).
