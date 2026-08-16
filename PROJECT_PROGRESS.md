@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-028
+Current Task: TASK-029
 
-Last Completed Task: TASK-027
+Last Completed Task: TASK-028
 
 Status: IN_PROGRESS
 
@@ -35,10 +35,10 @@ Status: IN_PROGRESS
 - [x] TASK-025 Create orders table
 - [x] TASK-026 Create order items table
 - [x] TASK-027 Create order models
+- [x] TASK-028 Build checkout page
 
 ## Remaining Tasks
 
-- [ ] TASK-028 Build checkout page
 - [ ] TASK-029 Add checkout validation
 - [ ] TASK-030 Implement order placement
 - [ ] TASK-031 Build order confirmation page
@@ -326,3 +326,24 @@ with one item, confirmed `$user->orders()->count()`, `$order->user->name`,
 `$order->items()->count()`, `$item->order->id`, and `$item->product->name`
 all resolve correctly, then deleted the order and confirmed the order item
 was cascade-deleted too.
+
+TASK-028 (2026-08-16): Added `App\Http\Controllers\CheckoutController::index()`
+and `GET /checkout` (name `checkout`, inside the existing `auth` middleware
+group). Built `resources/views/storefront/checkout.blade.php`: a delivery
+details form (full name/email pre-filled from the logged-in user, phone,
+address, a disabled "Cash on Delivery" radio as the only payment option) next
+to an order summary (per-item name/qty/subtotal, subtotal, total) and a
+Place Order button. The form posts to a plain `/checkout` URL (no `POST`
+route yet — TASK-030 implements order placement) and doesn't create an order,
+per task scope. Also updated the cart page's Checkout link and the cart's
+Total/Checkout section to use the new named `checkout` route. Verified: guest
+requests to `/checkout` get a 302 redirect, an authenticated user with an
+empty cart sees the empty-state message (curl), and — after a curl-based CSRF
+check turned out to be a cookie-jar/session-replay artifact of the testing
+tool rather than a real bug (confirmed by writing a temporary
+`RefreshDatabase` feature test against a throwaway `ecom-nub-testing` MySQL
+database, since the default in-memory SQLite test config isn't usable here
+without `pdo_sqlite`) — a `actingAs()` feature test confirmed an authenticated
+user can add a product to the cart and see it correctly rendered on the
+checkout page. The temporary test file and test database were removed after
+verification; only the checkout controller/view/routes are committed.

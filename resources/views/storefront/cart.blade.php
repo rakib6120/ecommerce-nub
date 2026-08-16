@@ -64,7 +64,7 @@
                         <span>Total</span>
                         <span>${{ number_format($total, 2) }}</span>
                     </div>
-                    <a href="{{ url('/checkout') }}"
+                    <a href="{{ route('checkout') }}"
                        class="mt-4 block text-center bg-indigo-600 text-white font-medium px-4 py-2 rounded-md hover:bg-indigo-700">
                         Checkout
                     </a>
