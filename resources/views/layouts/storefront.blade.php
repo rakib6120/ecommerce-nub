@@ -27,9 +27,13 @@
                 <div class="flex items-center space-x-4 text-sm font-medium">
                     @auth
                         <a href="{{ url('/dashboard') }}" class="text-gray-700 hover:text-indigo-600">Dashboard</a>
+                        <form action="{{ route('logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="text-gray-700 hover:text-indigo-600">Logout</button>
+                        </form>
                     @else
-                        <a href="{{ url('/login') }}" class="text-gray-700 hover:text-indigo-600">Login</a>
-                        <a href="{{ url('/register') }}" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Register</a>
+                        <a href="{{ route('login') }}" class="text-gray-700 hover:text-indigo-600">Login</a>
+                        <a href="{{ route('register') }}" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Register</a>
                     @endauth
                 </div>
             </div>

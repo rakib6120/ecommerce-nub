@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-017
+Current Task: TASK-018
 
-Last Completed Task: TASK-016
+Last Completed Task: TASK-017
 
 Status: IN_PROGRESS
 
@@ -24,10 +24,10 @@ Status: IN_PROGRESS
 - [x] TASK-014 Build product details page
 - [x] TASK-015 Add category filter
 - [x] TASK-016 Add product search
+- [x] TASK-017 Add customer authentication
 
 ## Remaining Tasks
 
-- [ ] TASK-017 Add customer authentication
 - [ ] TASK-018 Create customer dashboard
 - [ ] TASK-019 Implement session cart service
 - [ ] TASK-020 Add product to cart
@@ -209,3 +209,19 @@ the category filter pills to preserve the active search term via
 matching product, `?search=shirt&category=electronics` returns the empty
 state (no shirts in Electronics), and `?search=shirt&category=mens-clothing`
 returns 1 matching product (the T-Shirt) — all HTTP 200.
+
+TASK-017 (2026-08-16): No auth scaffolding existed (confirmed in TASK-001), so
+built simple Blade-based auth by hand rather than pulling in a starter kit.
+Added `App\Http\Controllers\Auth\AuthController` (`showRegister`, `register`,
+`showLogin`, `login`, `logout`) using Laravel's built-in `Auth`/`Hash`
+facades and validation (`unique` email, `min:8` + `confirmed` password on
+register). Added `resources/views/auth/register.blade.php` and
+`login.blade.php` extending the storefront layout. Added routes: `GET|POST
+/register`, `GET|POST /login` (behind the `guest` middleware) and `POST
+/logout` (behind `auth`). Updated the layout's navbar to use the new named
+routes and added a working logout form/button next to the auth-only
+Dashboard link. Verified the full flow manually with `curl` + a cookie jar:
+register creates a user and logs them in, login succeeds with correct
+credentials and fails with a clear error on wrong credentials, logout clears
+the session (navbar reverts to Login/Register), and `/register` redirects
+away (302) when already authenticated. Test user cleaned up afterward.
