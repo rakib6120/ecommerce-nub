@@ -4,7 +4,20 @@
 
 @section('content')
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <h1 class="text-3xl font-bold text-gray-900 mb-8">Shop</h1>
+        <h1 class="text-3xl font-bold text-gray-900 mb-6">Shop</h1>
+
+        <div class="flex flex-wrap gap-2 mb-8">
+            <a href="{{ route('shop') }}"
+               class="px-4 py-2 rounded-md text-sm font-medium {{ request('category') ? 'bg-gray-100 text-gray-700 hover:bg-gray-200' : 'bg-indigo-600 text-white' }}">
+                All
+            </a>
+            @foreach ($categories as $category)
+                <a href="{{ route('shop', ['category' => $category->slug]) }}"
+                   class="px-4 py-2 rounded-md text-sm font-medium {{ request('category') === $category->slug ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200' }}">
+                    {{ $category->name }}
+                </a>
+            @endforeach
+        </div>
 
         @if ($products->isEmpty())
             <p class="text-gray-600">No products found.</p>

@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-015
+Current Task: TASK-016
 
-Last Completed Task: TASK-014
+Last Completed Task: TASK-015
 
 Status: IN_PROGRESS
 
@@ -22,10 +22,10 @@ Status: IN_PROGRESS
 - [x] TASK-012 Display shop products
 - [x] TASK-013 Add product details route
 - [x] TASK-014 Build product details page
+- [x] TASK-015 Add category filter
 
 ## Remaining Tasks
 
-- [ ] TASK-015 Add category filter
 - [ ] TASK-016 Add product search
 - [ ] TASK-017 Add customer authentication
 - [ ] TASK-018 Create customer dashboard
@@ -189,3 +189,12 @@ an Add to Cart button. The form posts to a plain `/cart/add/{id}` URL (not a
 named route, since the cart route doesn't exist until TASK-020) and is not
 wired to any handler yet, per task scope. Verified with `php artisan serve`
 (HTTP 200, all key elements present in the rendered HTML).
+
+TASK-015 (2026-08-16): Added server-side category filtering to
+`ShopController::index()` via `?category=<slug>` (uses `whereHas` against the
+`category` relationship, applied only `when($request->filled('category'))`
+so the plain listing is unaffected). Added an "All" + per-category filter
+pill row to the shop page, highlighting the active filter. Verified:
+`/shop` still returns all 10 products, `/shop?category=electronics` returns
+only the 3 electronics products, and `/shop?category=does-not-exist` shows
+the empty state — all HTTP 200.

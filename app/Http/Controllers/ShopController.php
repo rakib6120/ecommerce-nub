@@ -2,19 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\View\View;
 
 class ShopController extends Controller
 {
-    public function index(): View
+    public function index(Request $request): View
     {
         $products = Product::with('category')
             ->where('status', true)
+            ->when($request->filled('category'), function ($query) use ($request) {
+                $query->whereHas('category', function ($query) use ($request) {
+                    $query->where('slug', $request->query('category'));
+                });
+            })
             ->latest()
             ->get();
 
-        return view('storefront.shop', compact('products'));
+        $categories = Category::where('status', true)->orderBy('name')->get();
+
+        return view('storefront.shop', compact('products', 'categories'));
     }
 
     public function show(string $slug): View
