@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-018
+Current Task: TASK-019
 
-Last Completed Task: TASK-017
+Last Completed Task: TASK-018
 
 Status: IN_PROGRESS
 
@@ -25,10 +25,10 @@ Status: IN_PROGRESS
 - [x] TASK-015 Add category filter
 - [x] TASK-016 Add product search
 - [x] TASK-017 Add customer authentication
+- [x] TASK-018 Create customer dashboard
 
 ## Remaining Tasks
 
-- [ ] TASK-018 Create customer dashboard
 - [ ] TASK-019 Implement session cart service
 - [ ] TASK-020 Add product to cart
 - [ ] TASK-021 Display shopping cart
@@ -225,3 +225,13 @@ register creates a user and logs them in, login succeeds with correct
 credentials and fails with a clear error on wrong credentials, logout clears
 the session (navbar reverts to Login/Register), and `/register` redirects
 away (302) when already authenticated. Test user cleaned up afterward.
+
+TASK-018 (2026-08-16): Added `App\Http\Controllers\DashboardController` with
+an `index()` method passing the authenticated user to a new
+`resources/views/storefront/dashboard.blade.php` view (welcome message,
+account information card, and a My Orders card linking to the not-yet-built
+`/my-orders`, TASK-032). Added `GET /dashboard` (name `dashboard`) inside the
+existing `auth` middleware group, and pointed the layout's Dashboard link at
+the named route. Verified: guest requests to `/dashboard` get a 302 redirect
+(to login), authenticated requests get HTTP 200 with the user's name and
+account details rendered.

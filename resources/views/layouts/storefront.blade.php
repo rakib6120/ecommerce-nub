@@ -26,7 +26,7 @@
 
                 <div class="flex items-center space-x-4 text-sm font-medium">
                     @auth
-                        <a href="{{ url('/dashboard') }}" class="text-gray-700 hover:text-indigo-600">Dashboard</a>
+                        <a href="{{ route('dashboard') }}" class="text-gray-700 hover:text-indigo-600">Dashboard</a>
                         <form action="{{ route('logout') }}" method="POST">
                             @csrf
                             <button type="submit" class="text-gray-700 hover:text-indigo-600">Logout</button>
