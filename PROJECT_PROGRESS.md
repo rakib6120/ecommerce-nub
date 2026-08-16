@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-003
+Current Task: TASK-004
 
-Last Completed Task: TASK-002
+Last Completed Task: TASK-003
 
 Status: IN_PROGRESS
 
@@ -10,10 +10,10 @@ Status: IN_PROGRESS
 
 - [x] TASK-001 Inspect existing Laravel application
 - [x] TASK-002 Create storefront layout
+- [x] TASK-003 Add basic storefront routes
 
 ## Remaining Tasks
 
-- [ ] TASK-003 Add basic storefront routes
 - [ ] TASK-004 Build home page
 - [ ] TASK-005 Build About Us page
 - [ ] TASK-006 Create categories table
@@ -101,3 +101,11 @@ login/register vs. dashboard area (using `@auth`/`@else`, ready for TASK-017),
 a `@yield('content')` main slot, and a footer. Verified with
 `php artisan view:cache` (compiles cleanly); no page content or routes were
 added yet, per task scope.
+
+TASK-003 (2026-08-16): Added routes for `/` (name `home`), `/shop`, `/about`,
+and `/cart` in `routes/web.php`, each with a placeholder Blade view under
+`resources/views/storefront/` extending the TASK-002 layout. Ran
+`npm install` and `npm run build` (frontend assets had never been built in
+this environment, causing a "Vite manifest not found" 500 error) and verified
+all four routes return HTTP 200 via `php artisan serve`. The old default
+`welcome.blade.php` is no longer routed to but left in place, unused.
