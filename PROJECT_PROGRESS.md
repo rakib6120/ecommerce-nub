@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-019
+Current Task: TASK-020
 
-Last Completed Task: TASK-018
+Last Completed Task: TASK-019
 
 Status: IN_PROGRESS
 
@@ -26,10 +26,10 @@ Status: IN_PROGRESS
 - [x] TASK-016 Add product search
 - [x] TASK-017 Add customer authentication
 - [x] TASK-018 Create customer dashboard
+- [x] TASK-019 Implement session cart service
 
 ## Remaining Tasks
 
-- [ ] TASK-019 Implement session cart service
 - [ ] TASK-020 Add product to cart
 - [ ] TASK-021 Display shopping cart
 - [ ] TASK-022 Update cart quantity
@@ -235,3 +235,16 @@ existing `auth` middleware group, and pointed the layout's Dashboard link at
 the named route. Verified: guest requests to `/dashboard` get a 302 redirect
 (to login), authenticated requests get HTTP 200 with the user's name and
 account details rendered.
+
+TASK-019 (2026-08-16): Added `app/Services/CartService.php`, a session-based
+cart (no `carts` table). Cart data is stored as a simple `product_id =>
+quantity` array under the `cart` session key; product IDs are the source of
+truth and `items()` always re-fetches products from the database (so price,
+name, and stock reflect current data, not stale cached values) to build
+`['product' => Product, 'quantity' => int, 'subtotal' => float]` rows.
+Methods: `add()` (increments), `update()` (sets exact quantity),
+`remove()`, `clear()`, `items()`, `count()`, `total()`. Not wired to any
+controller/route yet, per task scope (TASK-020 connects the Add to Cart
+button). Verified via a temporary route exercising add/update/remove/total,
+confirmed correct totals and counts, then removed the temporary route before
+committing.
