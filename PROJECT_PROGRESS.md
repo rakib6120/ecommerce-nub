@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-014
+Current Task: TASK-015
 
-Last Completed Task: TASK-013
+Last Completed Task: TASK-014
 
 Status: IN_PROGRESS
 
@@ -21,10 +21,10 @@ Status: IN_PROGRESS
 - [x] TASK-011 Create shop controller
 - [x] TASK-012 Display shop products
 - [x] TASK-013 Add product details route
+- [x] TASK-014 Build product details page
 
 ## Remaining Tasks
 
-- [ ] TASK-014 Build product details page
 - [ ] TASK-015 Add category filter
 - [ ] TASK-016 Add product search
 - [ ] TASK-017 Add customer authentication
@@ -179,3 +179,13 @@ layout comes in TASK-014), matching the TASK-003-then-TASK-004 pattern used
 for the home page. Updated the shop page's "View Details" links to use the
 new named route. Verified: existing slug returns HTTP 200, nonexistent slug
 returns HTTP 404.
+
+TASK-014 (2026-08-16): Built out
+`resources/views/storefront/product-details.blade.php` with a two-column
+layout: image (or placeholder), category, name, price, description, stock
+availability message (in stock w/ count, or out-of-stock in red with
+disabled controls), a quantity input (`min=1`, `max=$product->stock`), and
+an Add to Cart button. The form posts to a plain `/cart/add/{id}` URL (not a
+named route, since the cart route doesn't exist until TASK-020) and is not
+wired to any handler yet, per task scope. Verified with `php artisan serve`
+(HTTP 200, all key elements present in the rendered HTML).
