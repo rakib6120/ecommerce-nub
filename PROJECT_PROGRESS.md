@@ -1,0 +1,96 @@
+# Project Progress
+
+Current Task: TASK-002
+
+Last Completed Task: TASK-001
+
+Status: IN_PROGRESS
+
+## Completed Tasks
+
+- [x] TASK-001 Inspect existing Laravel application
+
+## Remaining Tasks
+
+- [ ] TASK-002 Create storefront layout
+- [ ] TASK-003 Add basic storefront routes
+- [ ] TASK-004 Build home page
+- [ ] TASK-005 Build About Us page
+- [ ] TASK-006 Create categories table
+- [ ] TASK-007 Create Category model
+- [ ] TASK-008 Create products table
+- [ ] TASK-009 Create Product model and relationships
+- [ ] TASK-010 Add ecommerce seed data
+- [ ] TASK-011 Create shop controller
+- [ ] TASK-012 Display shop products
+- [ ] TASK-013 Add product details route
+- [ ] TASK-014 Build product details page
+- [ ] TASK-015 Add category filter
+- [ ] TASK-016 Add product search
+- [ ] TASK-017 Add customer authentication
+- [ ] TASK-018 Create customer dashboard
+- [ ] TASK-019 Implement session cart service
+- [ ] TASK-020 Add product to cart
+- [ ] TASK-021 Display shopping cart
+- [ ] TASK-022 Update cart quantity
+- [ ] TASK-023 Remove item from cart
+- [ ] TASK-024 Add cart count to navbar
+- [ ] TASK-025 Create orders table
+- [ ] TASK-026 Create order items table
+- [ ] TASK-027 Create order models
+- [ ] TASK-028 Build checkout page
+- [ ] TASK-029 Add checkout validation
+- [ ] TASK-030 Implement order placement
+- [ ] TASK-031 Build order confirmation page
+- [ ] TASK-032 Add customer order list
+- [ ] TASK-033 Add customer order details
+- [ ] TASK-034 Add user role
+- [ ] TASK-035 Add admin middleware
+- [ ] TASK-036 Create admin layout
+- [ ] TASK-037 Create admin dashboard
+- [ ] TASK-038 Show recent admin orders
+- [ ] TASK-039 Add category listing
+- [ ] TASK-040 Add category creation
+- [ ] TASK-041 Add category editing
+- [ ] TASK-042 Add category deletion
+- [ ] TASK-043 Add product listing
+- [ ] TASK-044 Add product creation
+- [ ] TASK-045 Add product image upload
+- [ ] TASK-046 Add product editing
+- [ ] TASK-047 Add product deletion
+- [ ] TASK-048 Add admin order listing
+- [ ] TASK-049 Add admin order details
+- [ ] TASK-050 Add order status updates
+- [ ] TASK-051 Add customer listing
+- [ ] TASK-052 Add customer details
+- [ ] TASK-053 Add flash message component
+- [ ] TASK-054 Add empty states
+- [ ] TASK-055 Improve storefront responsiveness
+- [ ] TASK-056 Improve admin responsiveness
+- [ ] TASK-057 Review application validation
+- [ ] TASK-058 Add custom 404 page
+- [ ] TASK-059 Add project README
+
+## Notes
+
+Inspection results (2026-08-16):
+
+- Laravel 13.23.0 skeleton, freshly installed. Only route is `GET /` returning the
+  default `welcome` view. No custom controllers, models (besides `User`), or
+  ecommerce migrations exist yet.
+- Tailwind CSS 4 is already configured via `@tailwindcss/vite` and
+  `resources/css/app.css`. No customization has been done yet.
+- Migrations present: users, cache, jobs (Laravel defaults only). No categories,
+  products, orders, or order_items tables yet.
+- No authentication scaffolding (no Breeze/Jetstream/Fortify) is installed;
+  TASK-017 will need to add simple Blade-based auth from scratch.
+- `node_modules` was not yet installed; Node v25.6.1 / npm v11.9.0 are available
+  on the system so `npm install` can be run when frontend asset builds are
+  needed.
+- Database: the project's `.env` originally pointed at SQLite, but the PHP CLI
+  on this machine has no `pdo_sqlite` extension (only `pdo_mysql`). With the
+  user's approval, `.env` was updated to use MySQL (`DB_CONNECTION=mysql`,
+  database `ecom-nub`) matching the runbook's technology rules. The database
+  was created and the default migrations run successfully.
+- Git: repository has 2 prior commits (Laravel install, README update). Working
+  tree was clean aside from the new `ECOMMERCE_AGENT_RUNBOOK.md`.
