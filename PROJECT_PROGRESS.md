@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-027
+Current Task: TASK-028
 
-Last Completed Task: TASK-026
+Last Completed Task: TASK-027
 
 Status: IN_PROGRESS
 
@@ -34,10 +34,10 @@ Status: IN_PROGRESS
 - [x] TASK-024 Add cart count to navbar
 - [x] TASK-025 Create orders table
 - [x] TASK-026 Create order items table
+- [x] TASK-027 Create order models
 
 ## Remaining Tasks
 
-- [ ] TASK-027 Create order models
 - [ ] TASK-028 Build checkout page
 - [ ] TASK-029 Add checkout validation
 - [ ] TASK-030 Implement order placement
@@ -315,3 +315,14 @@ denormalized `product_name`/`price` columns even if the product is later
 deleted, per TASK-047's requirement not to break order history),
 `product_name`, `price` (decimal 10,2), `quantity` (unsigned int), `subtotal`
 (decimal 10,2), and timestamps. Ran `php artisan migrate` successfully.
+
+TASK-027 (2026-08-16): Added `app/Models/Order.php` (`user()` belongsTo,
+`items()` hasMany OrderItem) and `app/Models/OrderItem.php` (`order()`
+belongsTo, `product()` belongsTo), each with fillable fields and decimal/int
+casts matching their migrations. Added the inverse `orders()` hasMany
+relationship on `User`. Verified all five relationships plus the
+`order_id` cascade-delete with `php artisan tinker`: created a user's order
+with one item, confirmed `$user->orders()->count()`, `$order->user->name`,
+`$order->items()->count()`, `$item->order->id`, and `$item->product->name`
+all resolve correctly, then deleted the order and confirmed the order item
+was cascade-deleted too.
