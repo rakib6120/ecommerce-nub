@@ -6,10 +6,19 @@ use App\Models\Product;
 use App\Services\CartService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class CartController extends Controller
 {
     public function __construct(protected CartService $cart) {}
+
+    public function index(): View
+    {
+        $items = $this->cart->items();
+        $total = $this->cart->total();
+
+        return view('storefront.cart', compact('items', 'total'));
+    }
 
     public function add(Request $request, Product $product): RedirectResponse
     {

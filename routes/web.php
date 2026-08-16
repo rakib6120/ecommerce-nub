@@ -18,9 +18,7 @@ Route::get('/about', function () {
     return view('storefront.about');
 })->name('about');
 
-Route::get('/cart', function () {
-    return view('storefront.cart');
-})->name('cart');
+Route::get('/cart', [CartController::class, 'index'])->name('cart');
 
 Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
 

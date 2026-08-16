@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-021
+Current Task: TASK-022
 
-Last Completed Task: TASK-020
+Last Completed Task: TASK-021
 
 Status: IN_PROGRESS
 
@@ -28,10 +28,10 @@ Status: IN_PROGRESS
 - [x] TASK-018 Create customer dashboard
 - [x] TASK-019 Implement session cart service
 - [x] TASK-020 Add product to cart
+- [x] TASK-021 Display shopping cart
 
 ## Remaining Tasks
 
-- [ ] TASK-021 Display shopping cart
 - [ ] TASK-022 Update cart quantity
 - [ ] TASK-023 Remove item from cart
 - [ ] TASK-024 Add cart count to navbar
@@ -264,3 +264,15 @@ within stock succeeds and shows the success message, requesting more than
 available stock is rejected with the exact remaining count, and an invalid
 quantity (0) redirects back with the "must be at least 1" validation
 message rendered on the page.
+
+TASK-021 (2026-08-16): Added `CartController::index()` (uses
+`CartService::items()`/`total()`) and rewired `GET /cart` to it instead of
+the placeholder closure. Built out `resources/views/storefront/cart.blade.php`
+with a table showing each item's image/placeholder, name, price, a quantity
+update form, subtotal, and a remove form, plus a total and Checkout button.
+The update/remove forms post to plain `/cart/update/{id}` and
+`/cart/remove/{id}` URLs (not named routes yet — TASK-022/023 add those
+controller actions) and Checkout links to a plain `/checkout` URL (TASK-028).
+Verified: an empty cart shows the empty-state message, and after adding a
+product via `/cart/add/{id}`, the cart page (HTTP 200) shows the product
+name, Update button, Remove button, and Total.
