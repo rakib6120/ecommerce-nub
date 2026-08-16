@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-006
+Current Task: TASK-007
 
-Last Completed Task: TASK-005
+Last Completed Task: TASK-006
 
 Status: IN_PROGRESS
 
@@ -13,10 +13,10 @@ Status: IN_PROGRESS
 - [x] TASK-003 Add basic storefront routes
 - [x] TASK-004 Build home page
 - [x] TASK-005 Build About Us page
+- [x] TASK-006 Create categories table
 
 ## Remaining Tasks
 
-- [ ] TASK-006 Create categories table
 - [ ] TASK-007 Create Category model
 - [ ] TASK-008 Create products table
 - [ ] TASK-009 Create Product model and relationships
@@ -120,3 +120,7 @@ database/product data is wired up yet, per task scope. Verified with
 TASK-005 (2026-08-16): Built out `resources/views/storefront/about.blade.php`
 with a store introduction, a mission section, and a "why choose us" list.
 Verified with `php artisan serve` (HTTP 200 on `/about`).
+
+TASK-006 (2026-08-16): Added `create_categories_table` migration with `name`,
+`slug` (unique), `status` (boolean, default true/active), and timestamps.
+Ran `php artisan migrate` successfully against the MySQL `ecom-nub` database.
