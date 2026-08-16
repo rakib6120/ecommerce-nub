@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-008
+Current Task: TASK-009
 
-Last Completed Task: TASK-007
+Last Completed Task: TASK-008
 
 Status: IN_PROGRESS
 
@@ -15,10 +15,10 @@ Status: IN_PROGRESS
 - [x] TASK-005 Build About Us page
 - [x] TASK-006 Create categories table
 - [x] TASK-007 Create Category model
+- [x] TASK-008 Create products table
 
 ## Remaining Tasks
 
-- [ ] TASK-008 Create products table
 - [ ] TASK-009 Create Product model and relationships
 - [ ] TASK-010 Add ecommerce seed data
 - [ ] TASK-011 Create shop controller
@@ -129,3 +129,11 @@ TASK-007 (2026-08-16): Added `app/Models/Category.php` with `name`, `slug`,
 `status` fillable (via the `#[Fillable]` attribute, matching the existing
 `User` model's style) and a boolean cast for `status`. Verified with
 `php artisan tinker` by creating and deleting a test record.
+
+TASK-008 (2026-08-16): Added `create_products_table` migration with
+`category_id` (foreign key to `categories`, `restrictOnDelete` so a category
+with products can't be deleted at the DB level either, complementing the
+app-level check planned for TASK-042), `name`, `slug` (unique), `description`
+(nullable text), `price` (decimal 10,2), `stock` (unsigned int), `image`
+(nullable string path), `status` (boolean, default active), and timestamps.
+Ran `php artisan migrate` successfully.
