@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-047
+Current Task: TASK-048
 
-Last Completed Task: TASK-046
+Last Completed Task: TASK-047
 
 Status: IN_PROGRESS
 
@@ -54,10 +54,10 @@ Status: IN_PROGRESS
 - [x] TASK-044 Add product creation
 - [x] TASK-045 Add product image upload
 - [x] TASK-046 Add product editing
+- [x] TASK-047 Add product deletion
 
 ## Remaining Tasks
 
-- [ ] TASK-047 Add product deletion
 - [ ] TASK-048 Add admin order listing
 - [ ] TASK-049 Add admin order details
 - [ ] TASK-050 Add order status updates
@@ -597,3 +597,18 @@ test using `Storage::fake('public')` (removed afterward): editing without a
 new image preserves the existing image path and file; uploading a new image
 deletes the old file and stores/saves the new one; a missing `name` fails
 validation without changing the record; and a plain customer gets a 403.
+
+TASK-047 (2026-08-16): Added `ProductController::destroy()` and `DELETE
+/admin/products/{product}` (name `admin.products.destroy`). Deletes the
+product's image file from the `public` disk (if any) before deleting the
+product row; order history is preserved because `order_items.product_id` is
+`nullOnDelete` (TASK-026) and the item's `product_name`/`price` are already
+denormalized, so past orders keep displaying correctly even after the
+product is gone. Wired the index page's Delete button into a real form with
+a `@js()`-escaped confirm dialog, same pattern as category deletion.
+Verified with a temporary `RefreshDatabase` feature test using
+`Storage::fake('public')` (removed afterward): deleting a product removes
+its image file from disk; deleting a product that appears in a placed order
+leaves the order item's `product_name`/`price` intact (just nulls
+`product_id`) and the customer's order-details page still renders correctly
+afterward; and a plain customer gets a 403.

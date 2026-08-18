@@ -50,7 +50,12 @@
                             </td>
                             <td class="px-4 py-4 text-right space-x-3">
                                 <a href="{{ route('admin.products.edit', $product) }}" class="text-indigo-600 hover:underline text-xs font-medium">Edit</a>
-                                <button type="button" class="text-red-600 hover:underline text-xs font-medium">Delete</button>
+                                <form action="{{ route('admin.products.destroy', $product) }}" method="POST" class="inline"
+                                      onsubmit="return confirm('Delete product ' + @js($product->name) + '? This cannot be undone.');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:underline text-xs font-medium">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

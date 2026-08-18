@@ -98,6 +98,17 @@ class ProductController extends Controller
         return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
     }
 
+    public function destroy(Product $product): RedirectResponse
+    {
+        if ($product->image) {
+            Storage::disk('public')->delete($product->image);
+        }
+
+        $product->delete();
+
+        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
+    }
+
     private function uniqueSlug(string $name, ?int $ignoreId = null): string
     {
         $slug = Str::slug($name);
