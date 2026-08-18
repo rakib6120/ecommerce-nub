@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-036
+Current Task: TASK-037
 
-Last Completed Task: TASK-035
+Last Completed Task: TASK-036
 
 Status: IN_PROGRESS
 
@@ -43,10 +43,10 @@ Status: IN_PROGRESS
 - [x] TASK-033 Add customer order details
 - [x] TASK-034 Add user role
 - [x] TASK-035 Add admin middleware
+- [x] TASK-036 Create admin layout
 
 ## Remaining Tasks
 
-- [ ] TASK-036 Create admin layout
 - [ ] TASK-037 Create admin dashboard
 - [ ] TASK-038 Show recent admin orders
 - [ ] TASK-039 Add category listing
@@ -444,3 +444,14 @@ temporary route (`/_test-admin` behind `['auth', 'admin']`) and a temporary
 `RefreshDatabase` feature test, both removed afterward: a plain customer
 gets a 403, a user with `role = admin` gets through (200), and a guest is
 redirected to `/login` (the `auth` middleware runs first).
+
+TASK-036 (2026-08-16): Added `resources/views/layouts/admin.blade.php`: a
+dark sidebar (Dashboard/Products/Categories/Orders/Customers, then a
+divider with View Store and a working Logout form) next to a main content
+area with a page-title header and the same session success/error banner
+pattern used in the storefront layout. Sidebar links to not-yet-built admin
+pages use plain `/admin/...` URLs (routes come in TASK-037+); View Store and
+Logout use the existing named routes. No page content or admin routes were
+added yet, per task scope. Verified with a temporary child view + route
+(both removed afterward): the layout compiles and renders all sidebar
+items, the page title, and the yielded content correctly.
