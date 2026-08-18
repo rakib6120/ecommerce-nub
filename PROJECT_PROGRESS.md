@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-052
+Current Task: TASK-053
 
-Last Completed Task: TASK-051
+Last Completed Task: TASK-052
 
 Status: IN_PROGRESS
 
@@ -59,10 +59,10 @@ Status: IN_PROGRESS
 - [x] TASK-049 Add admin order details
 - [x] TASK-050 Add order status updates
 - [x] TASK-051 Add customer listing
+- [x] TASK-052 Add customer details
 
 ## Remaining Tasks
 
-- [ ] TASK-052 Add customer details
 - [ ] TASK-053 Add flash message component
 - [ ] TASK-054 Add empty states
 - [ ] TASK-055 Improve storefront responsiveness
@@ -660,3 +660,22 @@ named route. Verified with a temporary `RefreshDatabase` feature test
 (removed afterward): a customer with 2 orders appears with the correct
 order count, another admin user does not appear in the list at all
 (role-filtered), and a plain customer gets a 403.
+
+TASK-052 (2026-08-16): Added `CustomerController::show()` and `GET
+/admin/customers/{customer}` (name `admin.customers.show`), route-bound to
+`User` but rejecting (404) any user whose `role` isn't `customer` so an
+admin can't be viewed via this URL. Computes total order count, total spent
+(`whereNotIn('status', ['cancelled'])->sum('total')` — cancelled orders
+don't count as real revenue), and the latest 5 orders. Built
+`resources/views/admin/customers/show.blade.php`: name/email header, three
+stat cards (Registered, Total Orders, Total Spent), and a recent-orders
+table with View links into the admin order details page. Wired the
+customer listing's View link to the new route. Verified with a temporary
+`RefreshDatabase` feature test (removed afterward): a customer with 3
+orders (one cancelled for $100) shows total orders = 3 and total spent =
+$30.00 (excluding the cancelled order); requesting another admin's ID
+returns 404; and a plain customer gets a 403.
+
+This completes the full admin panel (TASK-034 through TASK-052): role-based
+access control, dashboard, and CRUD/management for categories, products,
+orders, and customers.

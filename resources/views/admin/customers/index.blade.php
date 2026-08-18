@@ -29,7 +29,7 @@
                             <td class="px-4 py-4 text-gray-600">{{ $customer->created_at->format('M d, Y') }}</td>
                             <td class="px-4 py-4 text-gray-600">{{ $customer->orders_count }}</td>
                             <td class="px-4 py-4 text-right">
-                                <a href="{{ url('/admin/customers/'.$customer->id) }}" class="text-indigo-600 hover:underline text-xs font-medium">View</a>
+                                <a href="{{ route('admin.customers.show', $customer) }}" class="text-indigo-600 hover:underline text-xs font-medium">View</a>
                             </td>
                         </tr>
                     @endforeach

@@ -77,4 +77,5 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
     Route::patch('/orders/{order}/status', [AdminOrderController::class, 'updateStatus'])->name('orders.updateStatus');
 
     Route::get('/customers', [AdminCustomerController::class, 'index'])->name('customers.index');
+    Route::get('/customers/{customer}', [AdminCustomerController::class, 'show'])->name('customers.show');
 });
