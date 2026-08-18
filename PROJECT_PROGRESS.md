@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-041
+Current Task: TASK-042
 
-Last Completed Task: TASK-040
+Last Completed Task: TASK-041
 
 Status: IN_PROGRESS
 
@@ -48,10 +48,10 @@ Status: IN_PROGRESS
 - [x] TASK-038 Show recent admin orders
 - [x] TASK-039 Add category listing
 - [x] TASK-040 Add category creation
+- [x] TASK-041 Add category editing
 
 ## Remaining Tasks
 
-- [ ] TASK-041 Add category editing
 - [ ] TASK-042 Add category deletion
 - [ ] TASK-043 Add product listing
 - [ ] TASK-044 Add product creation
@@ -506,3 +506,18 @@ the new route. Verified with a temporary `RefreshDatabase` feature test
 `sports-outdoors`; creating "Electronics" twice produces `electronics` and
 `electronics-1`; a missing `name` fails validation and creates no record;
 and a plain customer gets a 403.
+
+TASK-041 (2026-08-16): Added `CategoryController::edit()`/`update()` and
+`GET /admin/categories/{category}/edit` + `PUT /admin/categories/{category}`
+(names `admin.categories.edit`/`update`). Extended `uniqueSlug()` with an
+optional `$ignoreId` so re-saving a category under its own existing slug
+doesn't collide with itself; the slug is only regenerated when the
+submitted name actually differs from the current one, otherwise it's left
+untouched. Built `resources/views/admin/categories/edit.blade.php`
+(pre-filled name/status form). Wired the index page's Edit link to the new
+route. Verified with a temporary `RefreshDatabase` feature test (removed
+afterward): changing the name updates the slug; keeping the name unchanged
+(only toggling status) leaves the slug alone; renaming a category to collide
+with a different existing category's name correctly produces a
+disambiguated slug (`home-1`); a missing `name` fails validation without
+touching the record; and a plain customer gets a 403.

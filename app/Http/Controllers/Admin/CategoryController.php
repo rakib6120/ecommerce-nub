@@ -39,13 +39,36 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
     }
 
-    private function uniqueSlug(string $name): string
+    public function edit(Category $category): View
+    {
+        return view('admin.categories.edit', compact('category'));
+    }
+
+    public function update(Request $request, Category $category): RedirectResponse
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'status' => ['required', 'boolean'],
+        ]);
+
+        $category->update([
+            'name' => $validated['name'],
+            'slug' => $validated['name'] !== $category->name
+                ? $this->uniqueSlug($validated['name'], $category->id)
+                : $category->slug,
+            'status' => $validated['status'],
+        ]);
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
+    }
+
+    private function uniqueSlug(string $name, ?int $ignoreId = null): string
     {
         $slug = Str::slug($name);
         $original = $slug;
         $count = 1;
 
-        while (Category::where('slug', $slug)->exists()) {
+        while (Category::where('slug', $slug)->when($ignoreId, fn ($query) => $query->where('id', '!=', $ignoreId))->exists()) {
             $slug = $original.'-'.$count++;
         }
 

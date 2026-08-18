@@ -37,7 +37,7 @@
                                 </span>
                             </td>
                             <td class="px-4 py-4 text-right space-x-3">
-                                <a href="{{ url('/admin/categories/'.$category->id.'/edit') }}" class="text-indigo-600 hover:underline text-xs font-medium">Edit</a>
+                                <a href="{{ route('admin.categories.edit', $category) }}" class="text-indigo-600 hover:underline text-xs font-medium">Edit</a>
                                 <button type="button" class="text-red-600 hover:underline text-xs font-medium">Delete</button>
                             </td>
                         </tr>
