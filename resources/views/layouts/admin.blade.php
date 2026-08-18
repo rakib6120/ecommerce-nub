@@ -41,15 +41,9 @@
             </header>
 
             <main class="px-4 sm:px-6 lg:px-8 py-6">
-                @if (session('success'))
-                    <div class="mb-4 bg-green-50 text-green-700 border border-green-200 rounded-md px-4 py-3 text-sm">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
-                @if (session('error'))
-                    <div class="mb-4 bg-red-50 text-red-700 border border-red-200 rounded-md px-4 py-3 text-sm">
-                        {{ session('error') }}
+                @if (session()->hasAny(['success', 'error', 'warning']))
+                    <div class="mb-4 space-y-3">
+                        <x-flash-messages />
                     </div>
                 @endif
 
