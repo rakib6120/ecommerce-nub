@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-044
+Current Task: TASK-045
 
-Last Completed Task: TASK-043
+Last Completed Task: TASK-044
 
 Status: IN_PROGRESS
 
@@ -51,10 +51,10 @@ Status: IN_PROGRESS
 - [x] TASK-041 Add category editing
 - [x] TASK-042 Add category deletion
 - [x] TASK-043 Add product listing
+- [x] TASK-044 Add product creation
 
 ## Remaining Tasks
 
-- [ ] TASK-044 Add product creation
 - [ ] TASK-045 Add product image upload
 - [ ] TASK-046 Add product editing
 - [ ] TASK-047 Add product deletion
@@ -547,3 +547,21 @@ the admin layout's Products sidebar link to the new named route. Verified
 with a temporary `RefreshDatabase` feature test (removed afterward): an
 admin sees both an active and inactive product with correct name, category,
 price, and status badges, and a plain customer gets a 403.
+
+TASK-044 (2026-08-16): Added `ProductController::create()`/`store()` and
+`GET /admin/products/create` + `POST /admin/products` (names
+`admin.products.create`/`store`). Validates `category_id` (must exist),
+`name`, `description` (nullable), `price` (numeric, min 0), `stock`
+(integer, min 0), `status` (boolean); generates a unique slug the same way
+as categories (a private `uniqueSlug()` helper on this controller — kept
+separate rather than shared, since it's a small, self-contained routine and
+sharing it would mean introducing a cross-controller dependency for a few
+lines). No image upload yet, per task scope (TASK-045). Built
+`resources/views/admin/products/create.blade.php` (category select,
+name, description, price/stock, status, Save/Cancel). Wired the index
+page's "Add Product" link to the new route. Verified with a temporary
+`RefreshDatabase` feature test (removed afterward): creating a product
+generates the correct slug and stores all fields correctly; two products
+named "Widget" get `widget` and `widget-1`; an invalid category ID plus
+negative price/stock all fail validation with zero products created; and a
+plain customer gets a 403.

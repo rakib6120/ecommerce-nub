@@ -5,7 +5,7 @@
 @section('content')
     <div class="flex items-center justify-between mb-6">
         <h2 class="text-lg font-semibold text-gray-900">Products</h2>
-        <a href="{{ url('/admin/products/create') }}"
+        <a href="{{ route('admin.products.create') }}"
            class="bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-indigo-700">
             Add Product
         </a>
