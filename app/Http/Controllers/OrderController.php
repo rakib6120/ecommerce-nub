@@ -16,12 +16,26 @@ class OrderController extends Controller
         return view('storefront.orders.index', compact('orders'));
     }
 
+    public function show(Request $request, Order $order): View
+    {
+        $this->authorizeOwner($request, $order);
+
+        $order->load('items.product');
+
+        return view('storefront.orders.show', compact('order'));
+    }
+
     public function confirmation(Request $request, Order $order): View
+    {
+        $this->authorizeOwner($request, $order);
+
+        return view('storefront.order-confirmation', compact('order'));
+    }
+
+    private function authorizeOwner(Request $request, Order $order): void
     {
         if ($order->user_id !== $request->user()->id) {
             throw new NotFoundHttpException;
         }
-
-        return view('storefront.order-confirmation', compact('order'));
     }
 }

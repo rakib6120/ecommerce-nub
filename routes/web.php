@@ -47,4 +47,5 @@ Route::middleware('auth')->group(function () {
     Route::get('/order-confirmation/{order}', [OrderController::class, 'confirmation'])->name('order.confirmation');
 
     Route::get('/my-orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('/my-orders/{order}', [OrderController::class, 'show'])->name('orders.show');
 });

@@ -33,7 +33,7 @@
                                     </span>
                                 </td>
                                 <td class="px-4 py-4 text-right">
-                                    <a href="{{ url('/my-orders/'.$order->id) }}" class="text-indigo-600 hover:underline text-xs font-medium">View</a>
+                                    <a href="{{ route('orders.show', $order) }}" class="text-indigo-600 hover:underline text-xs font-medium">View</a>
                                 </td>
                             </tr>
                         @endforeach

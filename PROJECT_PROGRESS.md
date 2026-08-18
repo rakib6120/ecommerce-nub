@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-033
+Current Task: TASK-034
 
-Last Completed Task: TASK-032
+Last Completed Task: TASK-033
 
 Status: IN_PROGRESS
 
@@ -40,10 +40,10 @@ Status: IN_PROGRESS
 - [x] TASK-030 Implement order placement
 - [x] TASK-031 Build order confirmation page
 - [x] TASK-032 Add customer order list
+- [x] TASK-033 Add customer order details
 
 ## Remaining Tasks
 
-- [ ] TASK-033 Add customer order details
 - [ ] TASK-034 Add user role
 - [ ] TASK-035 Add admin middleware
 - [ ] TASK-036 Create admin layout
@@ -407,3 +407,18 @@ route. Verified with a temporary `RefreshDatabase` feature test (removed
 afterward): a user only sees their own order number and not another user's,
 the empty state renders for a user with no orders, and a guest is redirected
 to `/login`.
+
+TASK-033 (2026-08-16): Added `OrderController::show()` (`GET
+/my-orders/{order}`, name `orders.show`, `auth` group), extracting the
+ownership check from `confirmation()` into a shared private
+`authorizeOwner()` helper (both now 404 for non-owners). Built
+`resources/views/storefront/orders/show.blade.php`: order number, date,
+status, a delivery-information card (name/phone/email/address), an
+order-total card (subtotal/total), and a products table (using the
+order item's denormalized `product_name`/`price`, not a live relationship
+load, so history stays correct even if a product is later edited or
+deleted). Updated the My Orders list's View link to the new named route.
+Verified with a temporary `RefreshDatabase` feature test (removed
+afterward): the order's owner sees the order number, product name, address,
+and total on their own order page, while another authenticated user
+requesting the same order gets a 404.
