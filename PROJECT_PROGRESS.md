@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-039
+Current Task: TASK-040
 
-Last Completed Task: TASK-038
+Last Completed Task: TASK-039
 
 Status: IN_PROGRESS
 
@@ -46,10 +46,10 @@ Status: IN_PROGRESS
 - [x] TASK-036 Create admin layout
 - [x] TASK-037 Create admin dashboard
 - [x] TASK-038 Show recent admin orders
+- [x] TASK-039 Add category listing
 
 ## Remaining Tasks
 
-- [ ] TASK-039 Add category listing
 - [ ] TASK-040 Add category creation
 - [ ] TASK-041 Add category editing
 - [ ] TASK-042 Add category deletion
@@ -480,3 +480,15 @@ not just a test workaround — the same tie could occur in production with two
 near-simultaneous checkouts). Verified with a temporary `RefreshDatabase`
 feature test (removed afterward): with 7 orders created, the dashboard shows
 exactly the 5 most recently created and hides the 2 oldest.
+
+TASK-039 (2026-08-16): Added `App\Http\Controllers\Admin\CategoryController::index()`
+and `GET /admin/categories` (name `admin.categories.index`). Built
+`resources/views/admin/categories/index.blade.php`: a table of
+ID/name/slug/status (Active/Inactive badge), Edit link, and Delete button
+per row, plus an empty state and an "Add Category" link — Edit/Add link to
+not-yet-built `/admin/categories/...` URLs and Delete is a non-functional
+placeholder button, per task scope (TASK-040/041/042 wire these up). Updated
+the admin layout's Categories sidebar link to the new named route. Verified
+with a temporary `RefreshDatabase` feature test (removed afterward): an
+admin sees both an active and inactive category with correct badges and the
+Edit/Delete controls, and a plain customer gets a 403.

@@ -19,7 +19,7 @@
             <nav class="px-3 py-4 space-y-1 text-sm font-medium">
                 <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Dashboard</a>
                 <a href="{{ url('/admin/products') }}" class="block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Products</a>
-                <a href="{{ url('/admin/categories') }}" class="block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Categories</a>
+                <a href="{{ route('admin.categories.index') }}" class="block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Categories</a>
                 <a href="{{ url('/admin/orders') }}" class="block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Orders</a>
                 <a href="{{ url('/admin/customers') }}" class="block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Customers</a>
 
