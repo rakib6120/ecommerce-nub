@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-040
+Current Task: TASK-041
 
-Last Completed Task: TASK-039
+Last Completed Task: TASK-040
 
 Status: IN_PROGRESS
 
@@ -47,10 +47,10 @@ Status: IN_PROGRESS
 - [x] TASK-037 Create admin dashboard
 - [x] TASK-038 Show recent admin orders
 - [x] TASK-039 Add category listing
+- [x] TASK-040 Add category creation
 
 ## Remaining Tasks
 
-- [ ] TASK-040 Add category creation
 - [ ] TASK-041 Add category editing
 - [ ] TASK-042 Add category deletion
 - [ ] TASK-043 Add product listing
@@ -492,3 +492,17 @@ the admin layout's Categories sidebar link to the new named route. Verified
 with a temporary `RefreshDatabase` feature test (removed afterward): an
 admin sees both an active and inactive category with correct badges and the
 Edit/Delete controls, and a plain customer gets a 403.
+
+TASK-040 (2026-08-16): Added `CategoryController::create()`/`store()` and
+`GET /admin/categories/create` + `POST /admin/categories` (names
+`admin.categories.create`/`store`). Validates `name` (required) and `status`
+(required boolean); generates the slug automatically via a private
+`uniqueSlug()` helper (`Str::slug()`, appending `-1`, `-2`, ... on collision
+so two categories can share a name without a duplicate-slug DB error). Built
+`resources/views/admin/categories/create.blade.php` (name field, Active/
+Inactive select, Save/Cancel). Wired the index page's "Add Category" link to
+the new route. Verified with a temporary `RefreshDatabase` feature test
+(removed afterward): creating "Sports & Outdoors" produces slug
+`sports-outdoors`; creating "Electronics" twice produces `electronics` and
+`electronics-1`; a missing `name` fails validation and creates no record;
+and a plain customer gets a 403.
