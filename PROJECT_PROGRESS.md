@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-037
+Current Task: TASK-038
 
-Last Completed Task: TASK-036
+Last Completed Task: TASK-037
 
 Status: IN_PROGRESS
 
@@ -44,10 +44,10 @@ Status: IN_PROGRESS
 - [x] TASK-034 Add user role
 - [x] TASK-035 Add admin middleware
 - [x] TASK-036 Create admin layout
+- [x] TASK-037 Create admin dashboard
 
 ## Remaining Tasks
 
-- [ ] TASK-037 Create admin dashboard
 - [ ] TASK-038 Show recent admin orders
 - [ ] TASK-039 Add category listing
 - [ ] TASK-040 Add category creation
@@ -455,3 +455,15 @@ Logout use the existing named routes. No page content or admin routes were
 added yet, per task scope. Verified with a temporary child view + route
 (both removed afterward): the layout compiles and renders all sidebar
 items, the page title, and the yielded content correctly.
+
+TASK-037 (2026-08-16): Added `App\Http\Controllers\Admin\DashboardController`
+and a new `admin` route group (`Route::middleware(['auth',
+'admin'])->prefix('admin')->name('admin.')`) with `GET /admin` (name
+`admin.dashboard`) as its first route. Built
+`resources/views/admin/dashboard.blade.php` with four stat cards (Total
+Products, Categories, Orders, Customers — customers counted as `role =
+customer` only, matching TASK-051's admin customer listing scope) on the
+admin layout. Updated the admin layout's Dashboard sidebar link to the new
+named route. Verified with a temporary `RefreshDatabase` feature test
+(removed afterward): an admin sees the correct counts (2 products, 1
+category, 0 orders, 2 customers) and a plain customer gets a 403.
