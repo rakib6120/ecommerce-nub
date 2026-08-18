@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-031
+Current Task: TASK-032
 
-Last Completed Task: TASK-030
+Last Completed Task: TASK-031
 
 Status: IN_PROGRESS
 
@@ -38,10 +38,10 @@ Status: IN_PROGRESS
 - [x] TASK-028 Build checkout page
 - [x] TASK-029 Add checkout validation
 - [x] TASK-030 Implement order placement
+- [x] TASK-031 Build order confirmation page
 
 ## Remaining Tasks
 
-- [ ] TASK-031 Build order confirmation page
 - [ ] TASK-032 Add customer order list
 - [ ] TASK-033 Add customer order details
 - [ ] TASK-034 Add user role
@@ -383,3 +383,15 @@ format, status, item count, total, and stock decrement), cart clearing,
 rejection when stock is insufficient (no order created, stock untouched),
 rejection when the cart is empty, and that another user gets a 404 when
 requesting someone else's confirmation page — all 5 tests passed.
+
+TASK-031 (2026-08-16): Built out
+`resources/views/storefront/order-confirmation.blade.php` with a success
+message/icon, an order details card (order number, customer name, status,
+total), a Continue Shopping button (to `/shop`), and a My Orders button (to
+the not-yet-built `/my-orders`, TASK-032). Per-user access was already
+enforced in TASK-030's `OrderController::confirmation()` (404s if the order
+doesn't belong to the requesting user). Verified with a temporary
+`RefreshDatabase` feature test (same throwaway test-database technique,
+removed afterward): after placing an order, the confirmation page renders
+the correct order number, customer name, status, and total, and both
+buttons are present.
