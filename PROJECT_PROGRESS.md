@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-034
+Current Task: TASK-035
 
-Last Completed Task: TASK-033
+Last Completed Task: TASK-034
 
 Status: IN_PROGRESS
 
@@ -41,10 +41,10 @@ Status: IN_PROGRESS
 - [x] TASK-031 Build order confirmation page
 - [x] TASK-032 Add customer order list
 - [x] TASK-033 Add customer order details
+- [x] TASK-034 Add user role
 
 ## Remaining Tasks
 
-- [ ] TASK-034 Add user role
 - [ ] TASK-035 Add admin middleware
 - [ ] TASK-036 Create admin layout
 - [ ] TASK-037 Create admin dashboard
@@ -422,3 +422,15 @@ Verified with a temporary `RefreshDatabase` feature test (removed
 afterward): the order's owner sees the order number, product name, address,
 and total on their own order page, while another authenticated user
 requesting the same order gets a 404.
+
+TASK-034 (2026-08-16): Added a migration adding an `enum('role', ['customer',
+'admin'])` column to `users`, defaulting to `customer`. Deliberately did
+*not* add `role` to `User`'s `#[Fillable]` list — it must never be
+mass-assignable (e.g. from the registration form), only set directly by
+trusted code (an admin action, a seeder) — and added a `User::isAdmin()`
+helper for use by the admin middleware in TASK-035. Ran `php artisan
+migrate` successfully. Verified via tinker: new/existing users default to
+`role = customer`, `isAdmin()` returns the expected boolean when `role` is
+set directly on the model, and — confirming the mass-assignment guard works
+— calling `$user->update(['role' => 'admin'])` is silently ignored since
+`role` isn't fillable.
