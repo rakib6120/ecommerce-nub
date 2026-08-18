@@ -38,7 +38,12 @@
                             </td>
                             <td class="px-4 py-4 text-right space-x-3">
                                 <a href="{{ route('admin.categories.edit', $category) }}" class="text-indigo-600 hover:underline text-xs font-medium">Edit</a>
-                                <button type="button" class="text-red-600 hover:underline text-xs font-medium">Delete</button>
+                                <form action="{{ route('admin.categories.destroy', $category) }}" method="POST" class="inline"
+                                      onsubmit="return confirm('Delete category ' + @js($category->name) + '? This cannot be undone.');">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="text-red-600 hover:underline text-xs font-medium">Delete</button>
+                                </form>
                             </td>
                         </tr>
                     @endforeach

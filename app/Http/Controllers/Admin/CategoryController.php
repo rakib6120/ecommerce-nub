@@ -62,6 +62,17 @@ class CategoryController extends Controller
         return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
     }
 
+    public function destroy(Category $category): RedirectResponse
+    {
+        if ($category->products()->exists()) {
+            return back()->with('error', 'Cannot delete "'.$category->name.'" because it still has products assigned to it.');
+        }
+
+        $category->delete();
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
+    }
+
     private function uniqueSlug(string $name, ?int $ignoreId = null): string
     {
         $slug = Str::slug($name);

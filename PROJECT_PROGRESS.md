@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-042
+Current Task: TASK-043
 
-Last Completed Task: TASK-041
+Last Completed Task: TASK-042
 
 Status: IN_PROGRESS
 
@@ -49,10 +49,10 @@ Status: IN_PROGRESS
 - [x] TASK-039 Add category listing
 - [x] TASK-040 Add category creation
 - [x] TASK-041 Add category editing
+- [x] TASK-042 Add category deletion
 
 ## Remaining Tasks
 
-- [ ] TASK-042 Add category deletion
 - [ ] TASK-043 Add product listing
 - [ ] TASK-044 Add product creation
 - [ ] TASK-045 Add product image upload
@@ -521,3 +521,17 @@ afterward): changing the name updates the slug; keeping the name unchanged
 with a different existing category's name correctly produces a
 disambiguated slug (`home-1`); a missing `name` fails validation without
 touching the record; and a plain customer gets a 403.
+
+TASK-042 (2026-08-16): Added `CategoryController::destroy()` and `DELETE
+/admin/categories/{category}` (name `admin.categories.destroy`). Blocks
+deletion (flashing a clear error, no exception) if `$category->products()
+->exists()`, matching the DB-level `restrictOnDelete()` foreign key from
+TASK-008 as a second, more user-friendly layer of protection. Wired the
+index page's Delete button into a real form with a confirm-dialog
+`onsubmit`, using Blade's `@js()` directive to safely embed the category
+name in the JS string (verified it correctly escapes an apostrophe-bearing
+name like "O'Brien's Picks" to `'`-encoded sequences rather than
+letting the apostrophes break out of the quoted JS literal). Verified with a temporary `RefreshDatabase` feature
+test (removed afterward): a category with no products deletes successfully,
+a category with a product is rejected with a flashed error and stays in the
+database, and a plain customer gets a 403.
