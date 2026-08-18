@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-043
+Current Task: TASK-044
 
-Last Completed Task: TASK-042
+Last Completed Task: TASK-043
 
 Status: IN_PROGRESS
 
@@ -50,10 +50,10 @@ Status: IN_PROGRESS
 - [x] TASK-040 Add category creation
 - [x] TASK-041 Add category editing
 - [x] TASK-042 Add category deletion
+- [x] TASK-043 Add product listing
 
 ## Remaining Tasks
 
-- [ ] TASK-043 Add product listing
 - [ ] TASK-044 Add product creation
 - [ ] TASK-045 Add product image upload
 - [ ] TASK-046 Add product editing
@@ -535,3 +535,15 @@ letting the apostrophes break out of the quoted JS literal). Verified with a tem
 test (removed afterward): a category with no products deletes successfully,
 a category with a product is rejected with a flashed error and stays in the
 database, and a plain customer gets a 403.
+
+TASK-043 (2026-08-16): Added `App\Http\Controllers\Admin\ProductController::index()`
+(eager-loads `category`) and `GET /admin/products` (name
+`admin.products.index`). Built `resources/views/admin/products/index.blade.php`:
+a table of image/name/category/price/stock/status (Active/Inactive badge),
+Edit link, and Delete button per row, plus an empty state and an "Add
+Product" link — Edit/Add/Delete are placeholders for now (TASK-044/046/047
+wire these up), following the same pattern as the category listing. Updated
+the admin layout's Products sidebar link to the new named route. Verified
+with a temporary `RefreshDatabase` feature test (removed afterward): an
+admin sees both an active and inactive product with correct name, category,
+price, and status badges, and a plain customer gets a 403.
