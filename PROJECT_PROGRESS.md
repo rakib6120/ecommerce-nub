@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-048
+Current Task: TASK-049
 
-Last Completed Task: TASK-047
+Last Completed Task: TASK-048
 
 Status: IN_PROGRESS
 
@@ -55,10 +55,10 @@ Status: IN_PROGRESS
 - [x] TASK-045 Add product image upload
 - [x] TASK-046 Add product editing
 - [x] TASK-047 Add product deletion
+- [x] TASK-048 Add admin order listing
 
 ## Remaining Tasks
 
-- [ ] TASK-048 Add admin order listing
 - [ ] TASK-049 Add admin order details
 - [ ] TASK-050 Add order status updates
 - [ ] TASK-051 Add customer listing
@@ -612,3 +612,15 @@ its image file from disk; deleting a product that appears in a placed order
 leaves the order item's `product_name`/`price` intact (just nulls
 `product_id`) and the customer's order-details page still renders correctly
 afterward; and a plain customer gets a 403.
+
+TASK-048 (2026-08-16): Added `App\Http\Controllers\Admin\OrderController::index()`
+(`Order::latest('id')->get()`, newest first — using `id` rather than
+`created_at` for the same tie-breaking reason established in TASK-038) and
+`GET /admin/orders` (name `admin.orders.index`). Built
+`resources/views/admin/orders/index.blade.php`: a table of order
+number/customer/date/total/status/View-button rows, plus an empty state.
+View links to a not-yet-built `/admin/orders/{id}` URL (TASK-049). Updated
+the admin layout's Orders sidebar link to the new named route. Verified
+with a temporary `RefreshDatabase` feature test (removed afterward): two
+orders render with the most recently created one first, and a plain
+customer gets a 403.
