@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-046
+Current Task: TASK-047
 
-Last Completed Task: TASK-045
+Last Completed Task: TASK-046
 
 Status: IN_PROGRESS
 
@@ -53,10 +53,10 @@ Status: IN_PROGRESS
 - [x] TASK-043 Add product listing
 - [x] TASK-044 Add product creation
 - [x] TASK-045 Add product image upload
+- [x] TASK-046 Add product editing
 
 ## Remaining Tasks
 
-- [ ] TASK-046 Add product editing
 - [ ] TASK-047 Add product deletion
 - [ ] TASK-048 Add admin order listing
 - [ ] TASK-049 Add admin order details
@@ -581,3 +581,19 @@ stored and its path both saved on the product and rendered on the listing
 page; a `.pdf` upload is rejected by the `mimes` rule; a 3MB image is
 rejected by the `max:2048` rule; and submitting the form with no file at
 all still creates the product fine with `image` left `null`.
+
+TASK-046 (2026-08-16): Added `ProductController::edit()`/`update()` and
+`GET /admin/products/{product}/edit` + `PUT /admin/products/{product}`
+(names `admin.products.edit`/`update`). Same validation as creation, plus:
+if no new `image` file is submitted, the existing `image` path is left
+untouched; if a new file is submitted, the old file is deleted from the
+`public` disk before the new one is stored, so replacing an image doesn't
+leave orphaned files behind. Slug regeneration reuses the same
+change-only-if-name-differs logic as category editing. Built
+`resources/views/admin/products/edit.blade.php` (pre-filled fields, current
+image preview, a "Replace Image" file input). Wired the index page's Edit
+link to the new route. Verified with a temporary `RefreshDatabase` feature
+test using `Storage::fake('public')` (removed afterward): editing without a
+new image preserves the existing image path and file; uploading a new image
+deletes the old file and stores/saves the new one; a missing `name` fails
+validation without changing the record; and a plain customer gets a 403.
