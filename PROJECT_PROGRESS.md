@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-038
+Current Task: TASK-039
 
-Last Completed Task: TASK-037
+Last Completed Task: TASK-038
 
 Status: IN_PROGRESS
 
@@ -45,10 +45,10 @@ Status: IN_PROGRESS
 - [x] TASK-035 Add admin middleware
 - [x] TASK-036 Create admin layout
 - [x] TASK-037 Create admin dashboard
+- [x] TASK-038 Show recent admin orders
 
 ## Remaining Tasks
 
-- [ ] TASK-038 Show recent admin orders
 - [ ] TASK-039 Add category listing
 - [ ] TASK-040 Add category creation
 - [ ] TASK-041 Add category editing
@@ -467,3 +467,16 @@ admin layout. Updated the admin layout's Dashboard sidebar link to the new
 named route. Verified with a temporary `RefreshDatabase` feature test
 (removed afterward): an admin sees the correct counts (2 products, 1
 category, 0 orders, 2 customers) and a plain customer gets a 403.
+
+TASK-038 (2026-08-16): Added a "Recent Orders" table to the admin dashboard
+showing the latest 5 orders (order number, customer, total, status, date).
+The controller originally used `Order::latest()->take(5)` (sorts by
+`created_at`), but a feature test creating several orders in fast succession
+exposed that MySQL's `datetime` columns only have second-level precision —
+orders placed within the same second tie and sort unpredictably. Changed to
+`Order::latest('id')->take(5)`, since the auto-increment `id` is a strictly
+monotonic, unambiguous proxy for insertion order (a real correctness fix,
+not just a test workaround — the same tie could occur in production with two
+near-simultaneous checkouts). Verified with a temporary `RefreshDatabase`
+feature test (removed afterward): with 7 orders created, the dashboard shows
+exactly the 5 most recently created and hides the 2 oldest.

@@ -20,6 +20,8 @@ class DashboardController extends Controller
             'customers' => User::where('role', 'customer')->count(),
         ];
 
-        return view('admin.dashboard', compact('stats'));
+        $recentOrders = Order::latest('id')->take(5)->get();
+
+        return view('admin.dashboard', compact('stats', 'recentOrders'));
     }
 }
