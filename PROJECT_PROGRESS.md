@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-035
+Current Task: TASK-036
 
-Last Completed Task: TASK-034
+Last Completed Task: TASK-035
 
 Status: IN_PROGRESS
 
@@ -42,10 +42,10 @@ Status: IN_PROGRESS
 - [x] TASK-032 Add customer order list
 - [x] TASK-033 Add customer order details
 - [x] TASK-034 Add user role
+- [x] TASK-035 Add admin middleware
 
 ## Remaining Tasks
 
-- [ ] TASK-035 Add admin middleware
 - [ ] TASK-036 Create admin layout
 - [ ] TASK-037 Create admin dashboard
 - [ ] TASK-038 Show recent admin orders
@@ -434,3 +434,13 @@ migrate` successfully. Verified via tinker: new/existing users default to
 set directly on the model, and — confirming the mass-assignment guard works
 — calling `$user->update(['role' => 'admin'])` is silently ignored since
 `role` isn't fillable.
+
+TASK-035 (2026-08-16): Added `App\Http\Middleware\EnsureUserIsAdmin`, which
+aborts with a 403 if there's no authenticated user or
+`! $request->user()->isAdmin()`, and registered it as the `admin` middleware
+alias in `bootstrap/app.php`. No admin routes exist yet (TASK-036+ build the
+admin panel), so nothing currently uses this alias. Verified with a
+temporary route (`/_test-admin` behind `['auth', 'admin']`) and a temporary
+`RefreshDatabase` feature test, both removed afterward: a plain customer
+gets a 403, a user with `role = admin` gets through (200), and a guest is
+redirected to `/login` (the `auth` middleware runs first).
