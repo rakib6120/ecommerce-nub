@@ -14,4 +14,11 @@ class OrderController extends Controller
 
         return view('admin.orders.index', compact('orders'));
     }
+
+    public function show(Order $order): View
+    {
+        $order->load('items', 'user');
+
+        return view('admin.orders.show', compact('order'));
+    }
 }

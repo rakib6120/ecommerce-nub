@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-049
+Current Task: TASK-050
 
-Last Completed Task: TASK-048
+Last Completed Task: TASK-049
 
 Status: IN_PROGRESS
 
@@ -56,10 +56,10 @@ Status: IN_PROGRESS
 - [x] TASK-046 Add product editing
 - [x] TASK-047 Add product deletion
 - [x] TASK-048 Add admin order listing
+- [x] TASK-049 Add admin order details
 
 ## Remaining Tasks
 
-- [ ] TASK-049 Add admin order details
 - [ ] TASK-050 Add order status updates
 - [ ] TASK-051 Add customer listing
 - [ ] TASK-052 Add customer details
@@ -624,3 +624,16 @@ the admin layout's Orders sidebar link to the new named route. Verified
 with a temporary `RefreshDatabase` feature test (removed afterward): two
 orders render with the most recently created one first, and a plain
 customer gets a 403.
+
+TASK-049 (2026-08-16): Added `OrderController::show()` (eager-loads `items`
+and `user`) and `GET /admin/orders/{order}` (name `admin.orders.show`). Built
+`resources/views/admin/orders/show.blade.php`: order number/date/status,
+a customer-information card (showing both the linked user account's
+name/email and the order's own snapshot name/email/phone — useful since an
+order's contact details are captured at checkout time and could differ from
+the account's current profile), a delivery-address + totals card, and a
+products table. No status-update control yet (TASK-050). Updated the order
+listing's View link to the new named route. Verified with a temporary
+`RefreshDatabase` feature test (removed afterward): an admin sees the order
+number, both the account and order-snapshot customer details, address,
+product line, total, and status; a plain customer gets a 403.
