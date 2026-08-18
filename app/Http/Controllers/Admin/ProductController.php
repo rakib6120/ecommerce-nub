@@ -35,6 +35,7 @@ class ProductController extends Controller
             'price' => ['required', 'numeric', 'min:0'],
             'stock' => ['required', 'integer', 'min:0'],
             'status' => ['required', 'boolean'],
+            'image' => ['nullable', 'image', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
         ]);
 
         Product::create([
@@ -45,6 +46,7 @@ class ProductController extends Controller
             'price' => $validated['price'],
             'stock' => $validated['stock'],
             'status' => $validated['status'],
+            'image' => $request->hasFile('image') ? $request->file('image')->store('products', 'public') : null,
         ]);
 
         return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');

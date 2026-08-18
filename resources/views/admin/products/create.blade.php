@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="max-w-xl">
-        <form action="{{ route('admin.products.store') }}" method="POST" class="space-y-4">
+        <form action="{{ route('admin.products.store') }}" method="POST" enctype="multipart/form-data" class="space-y-4">
             @csrf
 
             <div>
@@ -57,6 +57,16 @@
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
                 </div>
+            </div>
+
+            <div>
+                <label for="image" class="block text-sm font-medium text-gray-700">Image</label>
+                <input type="file" id="image" name="image" accept=".jpg,.jpeg,.png,.webp"
+                       class="mt-1 block w-full text-sm text-gray-700 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100">
+                <p class="mt-1 text-xs text-gray-500">JPG, PNG, or WEBP. Max 2MB.</p>
+                @error('image')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>

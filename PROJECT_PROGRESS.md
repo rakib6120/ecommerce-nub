@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-045
+Current Task: TASK-046
 
-Last Completed Task: TASK-044
+Last Completed Task: TASK-045
 
 Status: IN_PROGRESS
 
@@ -52,10 +52,10 @@ Status: IN_PROGRESS
 - [x] TASK-042 Add category deletion
 - [x] TASK-043 Add product listing
 - [x] TASK-044 Add product creation
+- [x] TASK-045 Add product image upload
 
 ## Remaining Tasks
 
-- [ ] TASK-045 Add product image upload
 - [ ] TASK-046 Add product editing
 - [ ] TASK-047 Add product deletion
 - [ ] TASK-048 Add admin order listing
@@ -565,3 +565,19 @@ generates the correct slug and stores all fields correctly; two products
 named "Widget" get `widget` and `widget-1`; an invalid category ID plus
 negative price/stock all fail validation with zero products created; and a
 plain customer gets a 403.
+
+TASK-045 (2026-08-16): Ran `php artisan storage:link` (the
+`public/storage` → `storage/app/public` symlink didn't exist yet in this
+environment; already correctly gitignored via the default `/public/storage`
+entry). Added an `image` field to `ProductController::store()`'s validation
+(`nullable|image|mimes:jpg,jpeg,png,webp|max:2048` — 2MB cap) and, when a
+file is present, stores it via `$request->file('image')->store('products',
+'public')` and saves the returned relative path on the product (the admin
+product listing already displays it via `asset('storage/'.$product->image)`
+from TASK-043). Added a file input with `enctype="multipart/form-data"` to
+the create form. Verified with a temporary `RefreshDatabase` feature test
+using `Storage::fake('public')` (removed afterward): a valid JPG upload is
+stored and its path both saved on the product and rendered on the listing
+page; a `.pdf` upload is rejected by the `mimes` rule; a 3MB image is
+rejected by the `max:2048` rule; and submitting the form with no file at
+all still creates the product fine with `image` left `null`.
