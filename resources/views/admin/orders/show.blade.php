@@ -7,9 +7,19 @@
 
     <div class="mt-4 flex items-center justify-between flex-wrap gap-2">
         <h2 class="text-lg font-semibold text-gray-900">Order {{ $order->order_number }}</h2>
-        <span class="inline-block px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700 capitalize">
-            {{ $order->status }}
-        </span>
+
+        <form action="{{ route('admin.orders.updateStatus', $order) }}" method="POST" class="flex items-center gap-2">
+            @csrf
+            @method('PATCH')
+            <label for="status" class="sr-only">Status</label>
+            <select id="status" name="status" onchange="this.form.submit()"
+                    class="rounded-md border-gray-300 shadow-sm text-sm capitalize focus:border-indigo-500 focus:ring-indigo-500">
+                @foreach (['pending', 'processing', 'completed', 'cancelled'] as $status)
+                    <option value="{{ $status }}" @selected($order->status === $status)>{{ ucfirst($status) }}</option>
+                @endforeach
+            </select>
+            <noscript><button type="submit" class="text-indigo-600 hover:underline text-sm">Update</button></noscript>
+        </form>
     </div>
     <p class="mt-1 text-gray-500 text-sm">Placed on {{ $order->created_at->format('M d, Y') }}</p>
 

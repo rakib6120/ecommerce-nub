@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-050
+Current Task: TASK-051
 
-Last Completed Task: TASK-049
+Last Completed Task: TASK-050
 
 Status: IN_PROGRESS
 
@@ -57,10 +57,10 @@ Status: IN_PROGRESS
 - [x] TASK-047 Add product deletion
 - [x] TASK-048 Add admin order listing
 - [x] TASK-049 Add admin order details
+- [x] TASK-050 Add order status updates
 
 ## Remaining Tasks
 
-- [ ] TASK-050 Add order status updates
 - [ ] TASK-051 Add customer listing
 - [ ] TASK-052 Add customer details
 - [ ] TASK-053 Add flash message component
@@ -637,3 +637,13 @@ listing's View link to the new named route. Verified with a temporary
 `RefreshDatabase` feature test (removed afterward): an admin sees the order
 number, both the account and order-snapshot customer details, address,
 product line, total, and status; a plain customer gets a 403.
+
+TASK-050 (2026-08-16): Added `OrderController::updateStatus()` and `PATCH
+/admin/orders/{order}/status` (name `admin.orders.updateStatus`), validating
+`status` against `in:pending,processing,completed,cancelled`. Replaced the
+order details page's static status badge with a `<select>` bound to the new
+route that auto-submits on change (with a `<noscript>` fallback button for
+the rare no-JS case). Verified with a temporary `RefreshDatabase` feature
+test (removed afterward): a valid status change persists; an invalid value
+("shipped") fails validation and leaves the status untouched; and a plain
+customer gets a 403.
