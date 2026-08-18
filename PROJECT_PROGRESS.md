@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-032
+Current Task: TASK-033
 
-Last Completed Task: TASK-031
+Last Completed Task: TASK-032
 
 Status: IN_PROGRESS
 
@@ -39,10 +39,10 @@ Status: IN_PROGRESS
 - [x] TASK-029 Add checkout validation
 - [x] TASK-030 Implement order placement
 - [x] TASK-031 Build order confirmation page
+- [x] TASK-032 Add customer order list
 
 ## Remaining Tasks
 
-- [ ] TASK-032 Add customer order list
 - [ ] TASK-033 Add customer order details
 - [ ] TASK-034 Add user role
 - [ ] TASK-035 Add admin middleware
@@ -395,3 +395,15 @@ doesn't belong to the requesting user). Verified with a temporary
 removed afterward): after placing an order, the confirmation page renders
 the correct order number, customer name, status, and total, and both
 buttons are present.
+
+TASK-032 (2026-08-16): Added `OrderController::index()`
+(`$request->user()->orders()->latest()->get()`) and `GET /my-orders` (name
+`orders.index`, `auth` group). Built
+`resources/views/storefront/orders/index.blade.php`: a table of order
+number/date/total/status/View-button rows, plus an empty state ("You
+haven't placed any orders yet") with a link to the shop. Updated the
+dashboard and order-confirmation pages' "My Orders" links to the new named
+route. Verified with a temporary `RefreshDatabase` feature test (removed
+afterward): a user only sees their own order number and not another user's,
+the empty state renders for a user with no orders, and a guest is redirected
+to `/login`.

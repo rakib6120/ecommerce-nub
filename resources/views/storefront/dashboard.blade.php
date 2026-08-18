@@ -29,7 +29,7 @@
             <div class="bg-white border border-gray-200 rounded-lg p-6 flex flex-col">
                 <h2 class="text-lg font-semibold text-gray-900">Orders</h2>
                 <p class="mt-2 text-sm text-gray-500">View your past and current orders.</p>
-                <a href="{{ url('/my-orders') }}"
+                <a href="{{ route('orders.index') }}"
                    class="mt-auto pt-4 inline-block text-center bg-indigo-600 text-white text-sm font-medium px-4 py-2 rounded-md hover:bg-indigo-700">
                     My Orders
                 </a>

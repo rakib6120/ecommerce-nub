@@ -38,7 +38,7 @@
                class="flex-1 text-center bg-indigo-600 text-white font-medium px-4 py-2 rounded-md hover:bg-indigo-700">
                 Continue Shopping
             </a>
-            <a href="{{ url('/my-orders') }}"
+            <a href="{{ route('orders.index') }}"
                class="flex-1 text-center bg-gray-100 text-gray-700 font-medium px-4 py-2 rounded-md hover:bg-gray-200">
                 My Orders
             </a>

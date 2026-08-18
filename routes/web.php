@@ -45,4 +45,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/checkout', [CheckoutController::class, 'store'])->name('checkout.store');
 
     Route::get('/order-confirmation/{order}', [OrderController::class, 'confirmation'])->name('order.confirmation');
+
+    Route::get('/my-orders', [OrderController::class, 'index'])->name('orders.index');
 });
