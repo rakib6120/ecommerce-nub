@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-051
+Current Task: TASK-052
 
-Last Completed Task: TASK-050
+Last Completed Task: TASK-051
 
 Status: IN_PROGRESS
 
@@ -58,10 +58,10 @@ Status: IN_PROGRESS
 - [x] TASK-048 Add admin order listing
 - [x] TASK-049 Add admin order details
 - [x] TASK-050 Add order status updates
+- [x] TASK-051 Add customer listing
 
 ## Remaining Tasks
 
-- [ ] TASK-051 Add customer listing
 - [ ] TASK-052 Add customer details
 - [ ] TASK-053 Add flash message component
 - [ ] TASK-054 Add empty states
@@ -647,3 +647,16 @@ the rare no-JS case). Verified with a temporary `RefreshDatabase` feature
 test (removed afterward): a valid status change persists; an invalid value
 ("shipped") fails validation and leaves the status untouched; and a plain
 customer gets a 403.
+
+TASK-051 (2026-08-16): Added
+`App\Http\Controllers\Admin\CustomerController::index()` (`User::where('role',
+'customer')->withCount('orders')`) and `GET /admin/customers` (name
+`admin.customers.index`). Built
+`resources/views/admin/customers/index.blade.php`: a table of
+ID/name/email/registration-date/total-orders/View-button rows, plus an empty
+state. View links to a not-yet-built `/admin/customers/{id}` URL
+(TASK-052). Updated the admin layout's Customers sidebar link to the new
+named route. Verified with a temporary `RefreshDatabase` feature test
+(removed afterward): a customer with 2 orders appears with the correct
+order count, another admin user does not appear in the list at all
+(role-filtered), and a plain customer gets a 403.
