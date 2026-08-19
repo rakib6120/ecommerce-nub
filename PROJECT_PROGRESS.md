@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-056
+Current Task: TASK-057
 
-Last Completed Task: TASK-055
+Last Completed Task: TASK-056
 
 Status: IN_PROGRESS
 
@@ -63,10 +63,10 @@ Status: IN_PROGRESS
 - [x] TASK-053 Add flash message component
 - [x] TASK-054 Add empty states
 - [x] TASK-055 Improve storefront responsiveness
+- [x] TASK-056 Improve admin responsiveness
 
 ## Remaining Tasks
 
-- [ ] TASK-056 Improve admin responsiveness
 - [ ] TASK-057 Review application validation
 - [ ] TASK-058 Add custom 404 page
 - [ ] TASK-059 Add project README
@@ -732,3 +732,26 @@ dashboard and found their existing `grid-cols-1`/`sm:`/`md:`/`lg:` responsive
 patterns (from when each was originally built) already sound — no changes
 needed there. Verified `php artisan view:cache` compiles cleanly and all
 five storefront routes still return HTTP 200 after the changes.
+
+TASK-056 (2026-08-19): Reviewed only the admin panel UI (backend untouched).
+The main real problem: below the `lg` breakpoint, the sidebar (7 stacked nav
+items) rendered as a full-height block *above* the page content, forcing a
+scroll past the whole nav before reaching any admin content — a genuine
+mobile usability issue, not cosmetic. Restructured the sidebar `<nav>` so
+its two link groups use `lg:contents` (a display trick that "un-wraps" a
+container so its children become direct flex items of the parent) — below
+`lg` the nav is one `overflow-x-auto` horizontal scrolling row of pills; at
+`lg`+ the same markup reflows into the original vertical stacked list,
+including the border-separator before View Store, moved onto the link
+itself via `lg:border-t lg:mt-4 lg:pt-4` so it only appears in the vertical
+layout. Added the same `overflow-x-auto` + `min-w-[…]` table-scroll fix used
+in TASK-055 to all 6 admin data tables (categories, products, orders,
+customers, dashboard's Recent Orders, customer-details' Recent Orders).
+Fixed the order-details page's "Account" field (user name + email combined)
+which used a `flex justify-between` row that could overflow on narrow
+screens — changed to a stacked label/value layout with `break-words`, same
+treatment already used for the Address field on that page. Verified `php
+artisan view:cache` compiles cleanly and, logged in as a real admin user (a
+fresh migration + admin login, not just re-reasoning from earlier tests, to
+actually exercise the changed sidebar/table markup live), all five admin
+routes return HTTP 200 with the full nav rendering correctly.

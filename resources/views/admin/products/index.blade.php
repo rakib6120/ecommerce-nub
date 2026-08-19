@@ -14,8 +14,8 @@
     @if ($products->isEmpty())
         <x-empty-state message="No products found." :action-url="route('admin.products.create')" action-text="Add your first product" />
     @else
-        <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
-            <table class="w-full text-sm text-left">
+        <div class="bg-white border border-gray-200 rounded-lg overflow-x-auto">
+            <table class="w-full text-sm text-left min-w-[720px]">
                 <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
                     <tr>
                         <th class="px-4 py-3">Image</th>

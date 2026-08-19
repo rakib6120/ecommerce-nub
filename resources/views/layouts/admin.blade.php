@@ -16,18 +16,21 @@
                 ShopNub Admin
             </div>
 
-            <nav class="px-3 py-4 space-y-1 text-sm font-medium">
-                <a href="{{ route('admin.dashboard') }}" class="block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Dashboard</a>
-                <a href="{{ route('admin.products.index') }}" class="block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Products</a>
-                <a href="{{ route('admin.categories.index') }}" class="block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Categories</a>
-                <a href="{{ route('admin.orders.index') }}" class="block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Orders</a>
-                <a href="{{ route('admin.customers.index') }}" class="block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Customers</a>
+            <nav class="flex items-center gap-1 overflow-x-auto px-3 py-2 text-sm font-medium
+                        lg:flex-col lg:items-stretch lg:gap-0 lg:space-y-1 lg:overflow-visible lg:px-3 lg:py-4">
+                <div class="flex items-center gap-1 lg:contents">
+                    <a href="{{ route('admin.dashboard') }}" class="shrink-0 whitespace-nowrap block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Dashboard</a>
+                    <a href="{{ route('admin.products.index') }}" class="shrink-0 whitespace-nowrap block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Products</a>
+                    <a href="{{ route('admin.categories.index') }}" class="shrink-0 whitespace-nowrap block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Categories</a>
+                    <a href="{{ route('admin.orders.index') }}" class="shrink-0 whitespace-nowrap block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Orders</a>
+                    <a href="{{ route('admin.customers.index') }}" class="shrink-0 whitespace-nowrap block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">Customers</a>
+                </div>
 
-                <div class="pt-4 mt-4 border-t border-gray-800 space-y-1">
-                    <a href="{{ route('home') }}" class="block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">View Store</a>
-                    <form action="{{ route('logout') }}" method="POST">
+                <div class="flex items-center gap-1 lg:contents">
+                    <a href="{{ route('home') }}" class="shrink-0 whitespace-nowrap block px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white lg:mt-4 lg:pt-4 lg:border-t lg:border-gray-800">View Store</a>
+                    <form action="{{ route('logout') }}" method="POST" class="shrink-0 lg:w-full">
                         @csrf
-                        <button type="submit" class="w-full text-left px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">
+                        <button type="submit" class="whitespace-nowrap w-full text-left px-3 py-2 rounded-md hover:bg-gray-800 hover:text-white">
                             Logout
                         </button>
                     </form>

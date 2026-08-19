@@ -27,9 +27,9 @@
         <div class="bg-white border border-gray-200 rounded-lg p-6">
             <h3 class="text-sm font-semibold text-gray-900 mb-3">Customer Information</h3>
             <dl class="space-y-2 text-sm">
-                <div class="flex justify-between">
+                <div>
                     <dt class="text-gray-500">Account</dt>
-                    <dd class="text-gray-900 font-medium">{{ $order->user->name }} ({{ $order->user->email }})</dd>
+                    <dd class="text-gray-900 font-medium break-words">{{ $order->user->name }} ({{ $order->user->email }})</dd>
                 </div>
                 <div class="flex justify-between">
                     <dt class="text-gray-500">Order Name</dt>
@@ -66,8 +66,8 @@
 
     <div class="mt-8">
         <h3 class="text-sm font-semibold text-gray-900 mb-3">Products</h3>
-        <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
-            <table class="w-full text-sm text-left">
+        <div class="bg-white border border-gray-200 rounded-lg overflow-x-auto">
+            <table class="w-full text-sm text-left min-w-[420px]">
                 <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
                     <tr>
                         <th class="px-4 py-3">Product</th>
