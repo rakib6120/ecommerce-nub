@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-057
+Current Task: TASK-058
 
-Last Completed Task: TASK-056
+Last Completed Task: TASK-057
 
 Status: IN_PROGRESS
 
@@ -64,10 +64,10 @@ Status: IN_PROGRESS
 - [x] TASK-054 Add empty states
 - [x] TASK-055 Improve storefront responsiveness
 - [x] TASK-056 Improve admin responsiveness
+- [x] TASK-057 Review application validation
 
 ## Remaining Tasks
 
-- [ ] TASK-057 Review application validation
 - [ ] TASK-058 Add custom 404 page
 - [ ] TASK-059 Add project README
 
@@ -755,3 +755,27 @@ artisan view:cache` compiles cleanly and, logged in as a real admin user (a
 fresh migration + admin login, not just re-reasoning from earlier tests, to
 actually exercise the changed sidebar/table markup live), all five admin
 routes return HTTP 200 with the full nav rendering correctly.
+
+TASK-057 (2026-08-19): Audited validation against the areas the task lists
+(registration, products, categories, cart quantity, checkout, order status)
+by cross-checking each controller's rules against the actual DB column
+types/widths, not just re-reading the rules in isolation. Found two real
+gaps, both fixed — no new features added:
+1. `Product.price` is `decimal(10,2)` (max representable value
+   `99999999.99`) but `ProductController::store()`/`update()` only had
+   `min:0`, no `max` — an out-of-range price would have passed Laravel
+   validation and then hit a raw DB error instead of a clean validation
+   message. Added `max:99999999.99`. Also added `max:4294967295` to `stock`
+   to match the `unsignedInteger` column's ceiling, for the same reason.
+2. Checkout's `phone` field had no format constraint at all — any string up
+   to 30 characters passed, including non-phone garbage. Added
+   `regex:/^[0-9+\-\s()]{6,20}$/` (digits, `+`, `-`, spaces, parentheses)
+   loose enough to accept international formats already exercised in
+   earlier tasks' tests.
+Registration, categories, cart quantity, and order status validation were
+already reviewed and found adequate (rules match their column widths and
+business rules; no changes made there). Verified with a temporary
+`RefreshDatabase` feature test (removed afterward): a price of
+100000000 is rejected while the exact boundary 99999999.99 is accepted; a
+garbage phone string is rejected while three realistic formats (including
+the plain-digit style used throughout earlier checkout tests) are accepted.
