@@ -12,7 +12,7 @@
     </div>
 
     @if ($categories->isEmpty())
-        <p class="text-gray-600">No categories found.</p>
+        <x-empty-state message="No categories found." :action-url="route('admin.categories.create')" action-text="Add your first category" />
     @else
         <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
             <table class="w-full text-sm text-left">

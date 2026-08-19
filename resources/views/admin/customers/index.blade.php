@@ -6,7 +6,7 @@
     <h2 class="text-lg font-semibold text-gray-900 mb-6">Customers</h2>
 
     @if ($customers->isEmpty())
-        <p class="text-gray-600">No customers found.</p>
+        <x-empty-state message="No customers found." />
     @else
         <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
             <table class="w-full text-sm text-left">

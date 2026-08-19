@@ -12,7 +12,7 @@
     </div>
 
     @if ($products->isEmpty())
-        <p class="text-gray-600">No products found.</p>
+        <x-empty-state message="No products found." :action-url="route('admin.products.create')" action-text="Add your first product" />
     @else
         <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
             <table class="w-full text-sm text-left">

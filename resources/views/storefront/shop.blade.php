@@ -31,7 +31,11 @@
         </div>
 
         @if ($products->isEmpty())
-            <p class="text-gray-600">No products found.</p>
+            @if (request('search') || request('category'))
+                <x-empty-state message="No products match your search or filter." :action-url="route('shop')" action-text="Clear filters" />
+            @else
+                <x-empty-state message="No products found." />
+            @endif
         @else
             <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
                 @foreach ($products as $product)

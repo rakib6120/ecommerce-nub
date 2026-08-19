@@ -29,7 +29,7 @@
         <h2 class="text-lg font-semibold text-gray-900 mb-4">Recent Orders</h2>
 
         @if ($recentOrders->isEmpty())
-            <p class="text-gray-600">No orders yet.</p>
+            <x-empty-state message="No orders yet." />
         @else
             <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
                 <table class="w-full text-sm text-left">

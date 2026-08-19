@@ -7,8 +7,7 @@
         <h1 class="text-3xl font-bold text-gray-900 mb-8">Your Cart</h1>
 
         @if ($items->isEmpty())
-            <p class="text-gray-600">Your cart is empty.</p>
-            <a href="{{ route('shop') }}" class="mt-4 inline-block text-indigo-600 hover:underline">Continue shopping &rarr;</a>
+            <x-empty-state message="Your cart is empty." :action-url="route('shop')" action-text="Continue shopping" />
         @else
             <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
                 <table class="w-full text-sm text-left">

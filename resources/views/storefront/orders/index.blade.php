@@ -7,8 +7,7 @@
         <h1 class="text-3xl font-bold text-gray-900 mb-8">My Orders</h1>
 
         @if ($orders->isEmpty())
-            <p class="text-gray-600">You haven't placed any orders yet.</p>
-            <a href="{{ route('shop') }}" class="mt-4 inline-block text-indigo-600 hover:underline">Start shopping &rarr;</a>
+            <x-empty-state message="You haven't placed any orders yet." :action-url="route('shop')" action-text="Start shopping" />
         @else
             <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
                 <table class="w-full text-sm text-left">
