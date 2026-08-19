@@ -1,10 +1,10 @@
 # Project Progress
 
-Current Task: TASK-058
+Current Task: TASK-059
 
-Last Completed Task: TASK-057
+Last Completed Task: TASK-058
 
-Status: IN_PROGRESS
+Status: PAUSED
 
 ## Completed Tasks
 
@@ -65,10 +65,10 @@ Status: IN_PROGRESS
 - [x] TASK-055 Improve storefront responsiveness
 - [x] TASK-056 Improve admin responsiveness
 - [x] TASK-057 Review application validation
+- [x] TASK-058 Add custom 404 page
 
 ## Remaining Tasks
 
-- [ ] TASK-058 Add custom 404 page
 - [ ] TASK-059 Add project README
 
 ## Notes
@@ -779,3 +779,20 @@ business rules; no changes made there). Verified with a temporary
 100000000 is rejected while the exact boundary 99999999.99 is accepted; a
 garbage phone string is rejected while three realistic formats (including
 the plain-digit style used throughout earlier checkout tests) are accepted.
+
+TASK-058 (2026-08-19): Added `resources/views/errors/404.blade.php`
+(Laravel's conventional location for a custom error view — the framework
+automatically renders it for any 404 without extra wiring), extending the
+storefront layout so it inherits the navbar/footer for a consistent look.
+Shows a large "404", a "Page Not Found" message, and Home + Shop buttons.
+Verified live with `php artisan serve`: both a route that doesn't exist at
+all and a real in-app 404 (a nonexistent product slug, via
+`ShopController::show()`'s `firstOrFail()`) return HTTP 404 and render this
+same custom page correctly.
+
+## Pause Notes
+
+Paused after 5 commits this session, per the user's instruction ("continue
+and stop after 5 commits"). Working tree is clean, dev database reset to
+seeded state, `PROJECT_PROGRESS.md` up to date. Resume from TASK-059 (Add
+project README) — the final remaining task.
