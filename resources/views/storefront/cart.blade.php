@@ -9,8 +9,8 @@
         @if ($items->isEmpty())
             <x-empty-state message="Your cart is empty." :action-url="route('shop')" action-text="Continue shopping" />
         @else
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
-                <table class="w-full text-sm text-left">
+            <div class="bg-white border border-gray-200 rounded-lg overflow-x-auto">
+                <table class="w-full text-sm text-left min-w-[560px]">
                     <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
                         <tr>
                             <th class="px-4 py-3">Product</th>
@@ -35,7 +35,7 @@
                                         <span class="font-medium text-gray-900">{{ $item['product']->name }}</span>
                                     </div>
                                 </td>
-                                <td class="px-4 py-4 text-gray-600">${{ number_format($item['product']->price, 2) }}</td>
+                                <td class="px-4 py-4 text-gray-600 whitespace-nowrap">${{ number_format($item['product']->price, 2) }}</td>
                                 <td class="px-4 py-4">
                                     <form action="{{ route('cart.update', $item['product']) }}" method="POST" class="flex items-center gap-2">
                                         @csrf
@@ -44,7 +44,7 @@
                                         <button type="submit" class="text-indigo-600 hover:underline text-xs font-medium">Update</button>
                                     </form>
                                 </td>
-                                <td class="px-4 py-4 text-gray-900 font-medium">${{ number_format($item['subtotal'], 2) }}</td>
+                                <td class="px-4 py-4 text-gray-900 font-medium whitespace-nowrap">${{ number_format($item['subtotal'], 2) }}</td>
                                 <td class="px-4 py-4 text-right">
                                     <form action="{{ route('cart.remove', $item['product']) }}" method="POST">
                                         @csrf

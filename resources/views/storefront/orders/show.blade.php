@@ -54,8 +54,8 @@
 
         <div class="mt-8">
             <h2 class="text-lg font-semibold text-gray-900 mb-3">Products</h2>
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
-                <table class="w-full text-sm text-left">
+            <div class="bg-white border border-gray-200 rounded-lg overflow-x-auto">
+                <table class="w-full text-sm text-left min-w-[420px]">
                     <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
                         <tr>
                             <th class="px-4 py-3">Product</th>

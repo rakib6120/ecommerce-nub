@@ -9,8 +9,8 @@
         @if ($orders->isEmpty())
             <x-empty-state message="You haven't placed any orders yet." :action-url="route('shop')" action-text="Start shopping" />
         @else
-            <div class="bg-white border border-gray-200 rounded-lg overflow-hidden">
-                <table class="w-full text-sm text-left">
+            <div class="bg-white border border-gray-200 rounded-lg overflow-x-auto">
+                <table class="w-full text-sm text-left min-w-[500px]">
                     <thead class="bg-gray-50 text-gray-500 uppercase text-xs">
                         <tr>
                             <th class="px-4 py-3">Order Number</th>

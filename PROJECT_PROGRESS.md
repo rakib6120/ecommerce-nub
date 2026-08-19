@@ -1,8 +1,8 @@
 # Project Progress
 
-Current Task: TASK-055
+Current Task: TASK-056
 
-Last Completed Task: TASK-054
+Last Completed Task: TASK-055
 
 Status: IN_PROGRESS
 
@@ -62,10 +62,10 @@ Status: IN_PROGRESS
 - [x] TASK-052 Add customer details
 - [x] TASK-053 Add flash message component
 - [x] TASK-054 Add empty states
+- [x] TASK-055 Improve storefront responsiveness
 
 ## Remaining Tasks
 
-- [ ] TASK-055 Improve storefront responsiveness
 - [ ] TASK-056 Improve admin responsiveness
 - [ ] TASK-057 Review application validation
 - [ ] TASK-058 Add custom 404 page
@@ -715,7 +715,20 @@ which needed a real admin login this time rather than reasoning from
 similarity — caught the same `role` mass-assignment guard from TASK-034
 biting a test-setup shortcut, fixed by setting `$user->role` directly).
 
-## Pause Notes
-
-None — continuing per user instruction to stop after 5 commits this
-session.
+TASK-055 (2026-08-19): Reviewed only the storefront UI (backend untouched),
+per task scope. Fixed real overflow risks rather than cosmetic-only changes:
+added `overflow-x-auto` + a `min-w-[…]` floor to the three storefront tables
+(cart, My Orders list, order details' products table) so a narrow viewport
+scrolls the table horizontally instead of squeezing columns unreadably or
+overflowing the page; added `whitespace-nowrap` to price/subtotal cells so
+`$1,234.56`-style values can't wrap mid-figure. Made the navbar's top row
+`flex-wrap` (was a strict `flex` row that could overflow at very narrow
+widths, e.g. logo + "Register" button together), tightened its spacing at
+the base breakpoint (`space-x-2 sm:space-x-4`, smaller Register button
+padding below `sm:`), and let it grow height naturally on wrap instead of a
+fixed `h-16`. Trimmed the home hero's heading size and vertical padding at
+the base breakpoint. Reviewed home, shop, product details, checkout, and
+dashboard and found their existing `grid-cols-1`/`sm:`/`md:`/`lg:` responsive
+patterns (from when each was originally built) already sound — no changes
+needed there. Verified `php artisan view:cache` compiles cleanly and all
+five storefront routes still return HTTP 200 after the changes.

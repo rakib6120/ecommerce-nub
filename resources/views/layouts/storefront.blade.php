@@ -12,7 +12,7 @@
 
     <header class="bg-white border-b border-gray-200">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
+            <div class="flex flex-wrap items-center justify-between gap-y-2 py-3 md:h-16 md:py-0">
                 <a href="{{ url('/') }}" class="text-xl font-bold text-indigo-600">
                     ShopNub
                 </a>
@@ -29,7 +29,7 @@
                     </a>
                 </nav>
 
-                <div class="flex items-center space-x-4 text-sm font-medium">
+                <div class="flex items-center space-x-2 sm:space-x-4 text-sm font-medium">
                     @auth
                         <a href="{{ route('dashboard') }}" class="text-gray-700 hover:text-indigo-600">Dashboard</a>
                         <form action="{{ route('logout') }}" method="POST">
@@ -38,7 +38,7 @@
                         </form>
                     @else
                         <a href="{{ route('login') }}" class="text-gray-700 hover:text-indigo-600">Login</a>
-                        <a href="{{ route('register') }}" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md hover:bg-indigo-700">Register</a>
+                        <a href="{{ route('register') }}" class="inline-block bg-indigo-600 text-white px-3 py-1.5 sm:px-4 sm:py-2 rounded-md hover:bg-indigo-700">Register</a>
                     @endauth
                 </div>
             </div>

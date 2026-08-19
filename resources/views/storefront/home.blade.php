@@ -5,8 +5,8 @@
 @section('content')
     <!-- Hero Section -->
     <section class="bg-indigo-600">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
-            <h1 class="text-4xl sm:text-5xl font-bold text-white">Shop the Latest Trends</h1>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 text-center">
+            <h1 class="text-3xl sm:text-5xl font-bold text-white">Shop the Latest Trends</h1>
             <p class="mt-4 text-lg text-indigo-100 max-w-2xl mx-auto">
                 Quality products at unbeatable prices, delivered right to your door.
             </p>
