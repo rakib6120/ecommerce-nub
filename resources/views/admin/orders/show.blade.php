@@ -17,7 +17,7 @@
             @method('PATCH')
             <label for="status" class="sr-only">Status</label>
             <select id="status" name="status" onchange="this.form.submit()"
-                    class="rounded-md border-gray-300 shadow-sm text-sm capitalize focus:border-indigo-500 focus:ring-indigo-500">
+                    class="p-3 rounded-md border-gray-300 shadow-sm text-sm capitalize focus:border-indigo-500 focus:ring-indigo-500">
                 @foreach (['pending', 'processing', 'completed', 'cancelled'] as $status)
                     <option value="{{ $status }}" @selected($order->status === $status)>{{ ucfirst($status) }}</option>
                 @endforeach

@@ -20,7 +20,7 @@
                             <div>
                                 <label for="customer_name" class="block text-sm font-medium text-gray-700">Full Name</label>
                                 <input type="text" id="customer_name" name="customer_name" value="{{ old('customer_name', $user->name) }}"
-                                       class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm py-2.5 focus:border-indigo-500 focus:ring-indigo-500">
+                                       class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-indigo-500 focus:ring-indigo-500">
                                 @error('customer_name')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -29,7 +29,7 @@
                             <div>
                                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                                 <input type="email" id="email" name="email" value="{{ old('email', $user->email) }}"
-                                       class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm py-2.5 focus:border-indigo-500 focus:ring-indigo-500">
+                                       class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-indigo-500 focus:ring-indigo-500">
                                 @error('email')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -38,7 +38,7 @@
                             <div>
                                 <label for="phone" class="block text-sm font-medium text-gray-700">Phone</label>
                                 <input type="text" id="phone" name="phone" value="{{ old('phone') }}"
-                                       class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm py-2.5 focus:border-indigo-500 focus:ring-indigo-500">
+                                       class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-indigo-500 focus:ring-indigo-500">
                                 @error('phone')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                 @enderror
@@ -47,7 +47,7 @@
                             <div>
                                 <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
                                 <textarea id="address" name="address" rows="3"
-                                          class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm py-2.5 focus:border-indigo-500 focus:ring-indigo-500">{{ old('address') }}</textarea>
+                                          class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-indigo-500 focus:ring-indigo-500">{{ old('address') }}</textarea>
                                 @error('address')
                                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                                 @enderror

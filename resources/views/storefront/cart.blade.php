@@ -32,7 +32,7 @@
                                         @csrf
                                         <label class="text-sm text-gray-500">Qty</label>
                                         <input type="number" name="quantity" value="{{ $item['quantity'] }}" min="1" max="{{ $item['product']->stock }}"
-                                               class="w-16 rounded-md border-gray-300 shadow-sm text-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                               class="w-16 p-3 rounded-md border-gray-300 shadow-sm text-sm focus:border-indigo-500 focus:ring-indigo-500">
                                         <button type="submit" class="text-indigo-600 hover:underline text-xs font-medium">Update</button>
                                     </form>
 

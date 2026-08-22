@@ -12,7 +12,7 @@
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                 <input type="text" id="name" name="name" value="{{ old('name') }}"
-                       class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm py-2.5 focus:border-indigo-500 focus:ring-indigo-500">
+                       class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-indigo-500 focus:ring-indigo-500">
                 @error('name')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
@@ -21,7 +21,7 @@
             <div>
                 <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                 <select id="status" name="status"
-                        class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm py-2.5 focus:border-indigo-500 focus:ring-indigo-500">
+                        class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-indigo-500 focus:ring-indigo-500">
                     <option value="1" @selected(old('status', '1') == '1')>Active</option>
                     <option value="0" @selected(old('status') == '0')>Inactive</option>
                 </select>

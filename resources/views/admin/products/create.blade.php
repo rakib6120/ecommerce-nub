@@ -12,7 +12,7 @@
             <div>
                 <label for="category_id" class="block text-sm font-medium text-gray-700">Category</label>
                 <select id="category_id" name="category_id"
-                        class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm py-2.5 focus:border-indigo-500 focus:ring-indigo-500">
+                        class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-indigo-500 focus:ring-indigo-500">
                     <option value="">Select a category</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}" @selected(old('category_id') == $category->id)>{{ $category->name }}</option>
@@ -26,7 +26,7 @@
             <div>
                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                 <input type="text" id="name" name="name" value="{{ old('name') }}"
-                       class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm py-2.5 focus:border-indigo-500 focus:ring-indigo-500">
+                       class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-indigo-500 focus:ring-indigo-500">
                 @error('name')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
@@ -35,7 +35,7 @@
             <div>
                 <label for="short_description" class="block text-sm font-medium text-gray-700">Short Description</label>
                 <input type="text" id="short_description" name="short_description" value="{{ old('short_description') }}" maxlength="255"
-                       class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm py-2.5 focus:border-indigo-500 focus:ring-indigo-500">
+                       class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-indigo-500 focus:ring-indigo-500">
                 <p class="mt-1.5 text-xs text-gray-500">A one-line summary shown on product cards.</p>
                 @error('short_description')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -45,7 +45,7 @@
             <div>
                 <label for="description" class="block text-sm font-medium text-gray-700">Full Description</label>
                 <textarea id="description" name="description" rows="4"
-                          class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('description') }}</textarea>
+                          class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-indigo-500 focus:ring-indigo-500">{{ old('description') }}</textarea>
                 @error('description')
                     <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                 @enderror
@@ -57,7 +57,7 @@
                     <div class="relative mt-1.5">
                         <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400 text-sm">$</span>
                         <input type="number" id="price" name="price" step="0.01" min="0" value="{{ old('price') }}"
-                               class="block w-full rounded-md border-gray-300 shadow-sm py-2.5 pl-7 focus:border-indigo-500 focus:ring-indigo-500">
+                               class="block w-full rounded-md border-gray-300 shadow-sm p-3 pl-7 focus:border-indigo-500 focus:ring-indigo-500">
                     </div>
                     @error('price')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
@@ -67,7 +67,7 @@
                 <div>
                     <label for="stock" class="block text-sm font-medium text-gray-700">Stock</label>
                     <input type="number" id="stock" name="stock" min="0" value="{{ old('stock') }}"
-                           class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm py-2.5 focus:border-indigo-500 focus:ring-indigo-500">
+                           class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-indigo-500 focus:ring-indigo-500">
                     @error('stock')
                         <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
                     @enderror
@@ -87,7 +87,7 @@
             <div>
                 <label for="status" class="block text-sm font-medium text-gray-700">Status</label>
                 <select id="status" name="status"
-                        class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm py-2.5 focus:border-indigo-500 focus:ring-indigo-500">
+                        class="mt-1.5 block w-full rounded-md border-gray-300 shadow-sm p-3 focus:border-indigo-500 focus:ring-indigo-500">
                     <option value="1" @selected(old('status', '1') == '1')>Active</option>
                     <option value="0" @selected(old('status') == '0')>Inactive</option>
                 </select>

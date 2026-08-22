@@ -59,7 +59,7 @@
                     <label for="quantity" class="block text-sm font-medium text-gray-700 mb-2">Quantity</label>
                     <div class="flex items-center gap-4">
                         <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ $product->stock }}"
-                               class="w-20 py-2.5 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+                               class="w-20 p-3 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
                                @disabled($product->stock <= 0)>
 
                         <button type="submit"

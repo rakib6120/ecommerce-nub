@@ -32,7 +32,7 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-4.35-4.35M17 10a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
                     <input type="text" name="search" value="{{ request('search') }}" placeholder="Search products..."
-                           class="w-full pl-9 py-2.5 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                           class="w-full pl-9 p-3 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
                 </div>
                 <button type="submit" class="bg-indigo-600 text-white px-4 py-2.5 rounded-md hover:bg-indigo-700 transition-colors shrink-0">
                     Search
