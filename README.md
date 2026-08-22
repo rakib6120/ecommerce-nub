@@ -175,3 +175,17 @@ php artisan optimize:clear
 * This project does not integrate a real payment gateway — checkout is Cash on Delivery only.
 * Product/category/order data is intentionally simple (no variants, coupons, reviews, or wishlists) to keep the scope appropriate for a university submission.
 * `ProductSeeder` downloads one real product photo per product from the internet during seeding, so `php artisan migrate --seed` needs network access the first time. If it's unavailable, seeding still succeeds — each product falls back to a clean, locally generated placeholder image instead.
+
+## Demo
+
+**Homepage**
+
+![ShopNub homepage](docs/screenshots/homepage.jpg)
+
+**Shop page**
+
+![ShopNub shop page](docs/screenshots/shop.jpg)
+
+**Product details page**
+
+![ShopNub product details page](docs/screenshots/product.jpg)
