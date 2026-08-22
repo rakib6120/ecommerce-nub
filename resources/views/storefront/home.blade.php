@@ -4,9 +4,12 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section class="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-indigo-600 to-purple-700">
-        <div class="absolute -top-24 -right-24 h-80 w-80 rounded-full bg-white/10 blur-3xl" aria-hidden="true"></div>
-        <div class="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-purple-400/20 blur-3xl" aria-hidden="true"></div>
+    <section class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950 to-violet-900">
+        <div class="absolute inset-0 opacity-40" aria-hidden="true"
+             style="background-image: url('data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%2440%22 height=%2240%22%3E%3Ccircle cx=%222%22 cy=%222%22 r=%221.5%22 fill=%22%23ffffff%22 fill-opacity=%220.18%22/%3E%3C/svg%3E');">
+        </div>
+        <div class="absolute -top-24 -right-24 h-80 w-80 rounded-full bg-indigo-500/30 blur-3xl" aria-hidden="true"></div>
+        <div class="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-violet-500/30 blur-3xl" aria-hidden="true"></div>
 
         <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
