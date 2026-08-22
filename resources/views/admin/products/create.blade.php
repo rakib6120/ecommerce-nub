@@ -31,7 +31,17 @@
             </div>
 
             <div>
-                <label for="description" class="block text-sm font-medium text-gray-700">Description</label>
+                <label for="short_description" class="block text-sm font-medium text-gray-700">Short Description</label>
+                <input type="text" id="short_description" name="short_description" value="{{ old('short_description') }}" maxlength="255"
+                       class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                <p class="mt-1 text-xs text-gray-500">A one-line summary shown on product cards.</p>
+                @error('short_description')
+                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                @enderror
+            </div>
+
+            <div>
+                <label for="description" class="block text-sm font-medium text-gray-700">Full Description</label>
                 <textarea id="description" name="description" rows="4"
                           class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">{{ old('description') }}</textarea>
                 @error('description')

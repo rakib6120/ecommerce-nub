@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-#[Fillable(['category_id', 'name', 'slug', 'description', 'price', 'stock', 'image', 'status'])]
+#[Fillable(['category_id', 'name', 'short_description', 'slug', 'description', 'price', 'stock', 'image', 'status'])]
 class Product extends Model
 {
     protected function casts(): array

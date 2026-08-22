@@ -32,6 +32,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'category_id' => ['required', 'exists:categories,id'],
             'name' => ['required', 'string', 'max:255'],
+            'short_description' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'price' => ['required', 'numeric', 'min:0', 'max:99999999.99'],
             'stock' => ['required', 'integer', 'min:0', 'max:4294967295'],
@@ -43,6 +44,7 @@ class ProductController extends Controller
             'category_id' => $validated['category_id'],
             'name' => $validated['name'],
             'slug' => $this->uniqueSlug($validated['name']),
+            'short_description' => $validated['short_description'] ?? null,
             'description' => $validated['description'] ?? null,
             'price' => $validated['price'],
             'stock' => $validated['stock'],
@@ -65,6 +67,7 @@ class ProductController extends Controller
         $validated = $request->validate([
             'category_id' => ['required', 'exists:categories,id'],
             'name' => ['required', 'string', 'max:255'],
+            'short_description' => ['nullable', 'string', 'max:255'],
             'description' => ['nullable', 'string'],
             'price' => ['required', 'numeric', 'min:0', 'max:99999999.99'],
             'stock' => ['required', 'integer', 'min:0', 'max:4294967295'],
@@ -88,6 +91,7 @@ class ProductController extends Controller
             'slug' => $validated['name'] !== $product->name
                 ? $this->uniqueSlug($validated['name'], $product->id)
                 : $product->slug,
+            'short_description' => $validated['short_description'] ?? null,
             'description' => $validated['description'] ?? null,
             'price' => $validated['price'],
             'stock' => $validated['stock'],
