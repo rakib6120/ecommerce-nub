@@ -26,7 +26,7 @@ No frontend JavaScript framework (React, Vue, Alpine.js) or admin template is us
 
 * Browse the home page, shop page, and About Us page
 * Search products by name and filter by category (combinable, server-side)
-* View product details (image, price, description, stock)
+* View product details (image, price, short and full description, stock)
 * Register, log in, and log out
 * Session-based shopping cart: add, update quantity, remove items; live cart count in the navbar
 * Checkout with delivery details, validated server-side
@@ -95,7 +95,11 @@ DB_PASSWORD=
 php artisan migrate --seed
 ```
 
-This creates all tables and seeds 4 categories, 10 products, and one test customer account (`test@example.com` / `password`).
+This creates all tables and seeds:
+
+* 4 categories and 10 products, each with a real product photo (downloaded once during seeding and cropped to a consistent square) and both a short and full description
+* A test customer account: `test@example.com` / `password`
+* A ready-to-use admin account: `admin@example.com` / `password` (see [Creating an Admin User](#creating-an-admin-user) for promoting additional accounts)
 
 ### 6. Link storage for product images
 
@@ -129,7 +133,9 @@ Visit `http://127.0.0.1:8000`.
 
 ## Creating an Admin User
 
-New registrations always get the `customer` role (this is intentional — `role` is not mass-assignable, so it can't be set through the registration form). To promote a user to admin, register normally through the app, then run:
+Seeding already creates a ready-to-use admin account: `admin@example.com` / `password`. Log in with it and visit `/admin`.
+
+To promote a different account to admin (new registrations always get the `customer` role — this is intentional, since `role` is not mass-assignable and can't be set through the registration form), register normally through the app, then run:
 
 ```bash
 php artisan tinker --execute="
@@ -138,8 +144,6 @@ php artisan tinker --execute="
 \$user->save();
 "
 ```
-
-Log in with that account and visit `/admin`.
 
 ## Useful Commands
 
@@ -170,3 +174,4 @@ php artisan optimize:clear
 
 * This project does not integrate a real payment gateway — checkout is Cash on Delivery only.
 * Product/category/order data is intentionally simple (no variants, coupons, reviews, or wishlists) to keep the scope appropriate for a university submission.
+* `ProductSeeder` downloads one real product photo per product from the internet during seeding, so `php artisan migrate --seed` needs network access the first time. If it's unavailable, seeding still succeeds — each product falls back to a clean, locally generated placeholder image instead.

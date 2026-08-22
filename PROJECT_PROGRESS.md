@@ -841,3 +841,59 @@ checkout, order history) and a role-protected admin panel (dashboard,
 category/product/order/customer management). No blockers remain. Any
 further work should come from new requirements rather than this runbook,
 since every listed task is done.
+
+## Post-Completion Enhancements (2026-08-22)
+
+The user asked for presentation polish beyond the original runbook: richer
+seed data and a full visual redesign. Not part of the numbered task queue,
+but recorded here for continuity.
+
+**Seed data:**
+- Added `short_description` (new migration + column) alongside the existing
+  full `description`, with real per-product copy for all 10 seeded products
+  (was previously one generic templated sentence).
+- `ProductSeeder` now downloads one real, hand-picked, license-checked
+  product photo per product (via Openverse/Wikimedia Commons, verified
+  visually one at a time — two automated approaches were tried and rejected
+  first: LoremFlickr's keyword search returned an irrelevant/inappropriate
+  photo for "jeans", and Wikimedia's raw full-text search mostly surfaced
+  unrelated historical scans) and center-crops it to a consistent 600x600
+  square. Falls back to a locally generated on-brand placeholder card (GD +
+  bundled DejaVu Sans fonts in `resources/fonts/`) if the download fails, so
+  seeding stays offline-safe. One photo (power bank) initially cropped badly
+  — the source was a wide landscape image with the product's accent color
+  off-center, so the square crop left only plain black casing; replaced
+  with a better-composed source photo rather than special-casing the crop
+  logic.
+- Added `AdminUserSeeder` — seeds a ready-to-use `admin@example.com` /
+  `password` account (role set by direct attribute assignment, since `role`
+  is intentionally not mass-assignable).
+- `README.md` updated to document the seeded admin account and that
+  `ProductSeeder` needs network access once (with an offline fallback).
+
+**UI redesign** (storefront: home, shop, product details, cart, checkout,
+login, register; admin: product/category create+edit forms, dashboard,
+order details, customer details): consistent card-based design system
+(`rounded-xl` white cards, `py-2.5` inputs, `bg-indigo-600` primary buttons
+with `transition-colors`), home page converted from static placeholder
+content to a real `HomeController` pulling live featured products/categories,
+icon badges added to admin stat cards. Two independent background agents
+handled the checkout redesign and the admin dashboard/order/customer polish
+in parallel (each briefed with the exact class patterns to match, verified
+via live curl flows, diffs reviewed afterward — clean, no functional
+changes). Caught and fixed a real bug via user-reported screenshots: several
+form inputs (shop search box, product-detail quantity field) were missing
+`py-2.5`, so they rendered shorter than their adjacent buttons.
+
+Verified with real Playwright + headless Chrome screenshots (not just HTML
+inspection) across every redesigned page, logged in as both the seeded
+customer and admin accounts.
+
+**Note:** Observed a commit (`e13c4e3`) on this branch with an
+auto-generated-looking message that was not created by an explicit `git
+commit` from this agent or its subagents — consistent with the VS Code
+auto-sync/auto-commit behavior already flagged to the user earlier this
+session (previously observed as auto-*push*; this is the first time it
+appears to have also auto-*committed*). Left untouched per the user's
+earlier "leave it, keep going" instruction; flagged to the user again for
+awareness.
