@@ -4,16 +4,94 @@
 
 @section('content')
     <!-- Hero Section -->
-    <section class="bg-gradient-to-br from-indigo-600 to-indigo-700">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-24 text-center">
-            <h1 class="text-3xl sm:text-5xl font-bold text-white tracking-tight">Shop the Latest Trends</h1>
-            <p class="mt-4 text-lg text-indigo-100 max-w-2xl mx-auto">
-                Quality products at unbeatable prices, delivered right to your door.
-            </p>
-            <a href="{{ route('shop') }}"
-               class="mt-8 inline-block bg-white text-indigo-600 font-semibold px-8 py-3 rounded-md shadow-sm hover:bg-indigo-50 transition-colors">
-                Shop Now
-            </a>
+    <section class="relative overflow-hidden bg-gradient-to-br from-indigo-600 via-indigo-600 to-purple-700">
+        <div class="absolute -top-24 -right-24 h-80 w-80 rounded-full bg-white/10 blur-3xl" aria-hidden="true"></div>
+        <div class="absolute -bottom-32 -left-20 h-80 w-80 rounded-full bg-purple-400/20 blur-3xl" aria-hidden="true"></div>
+
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="text-center lg:text-left">
+                    <span class="inline-block bg-white/15 text-white text-xs font-semibold tracking-wide uppercase px-3 py-1 rounded-full">
+                        New Arrivals Every Week
+                    </span>
+                    <h1 class="mt-5 text-4xl sm:text-5xl font-bold text-white tracking-tight leading-tight">
+                        Shop the Latest Trends
+                    </h1>
+                    <p class="mt-4 text-lg text-indigo-100 max-w-xl mx-auto lg:mx-0">
+                        Quality products at unbeatable prices, delivered right to your door.
+                    </p>
+
+                    <div class="mt-8">
+                        <a href="{{ route('shop') }}"
+                           class="inline-block bg-white text-indigo-600 font-semibold px-8 py-3 rounded-md shadow-sm hover:bg-indigo-50 transition-colors">
+                            Shop Now
+                        </a>
+                    </div>
+
+                    <div class="mt-10 grid grid-cols-3 gap-4 max-w-md mx-auto lg:mx-0">
+                        <div class="text-center lg:text-left">
+                            <p class="text-2xl font-bold text-white">{{ $categories->count() }}+</p>
+                            <p class="text-xs text-indigo-200 mt-1">Categories</p>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <p class="text-2xl font-bold text-white">Free</p>
+                            <p class="text-xs text-indigo-200 mt-1">Shipping $50+</p>
+                        </div>
+                        <div class="text-center lg:text-left">
+                            <p class="text-2xl font-bold text-white">COD</p>
+                            <p class="text-xs text-indigo-200 mt-1">Cash on Delivery</p>
+                        </div>
+                    </div>
+                </div>
+
+                @if ($featuredProducts->isNotEmpty())
+                    <div class="hidden lg:block relative h-96">
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            @if ($featuredProducts->get(0))
+                                @php $product = $featuredProducts->get(0); @endphp
+                                <a href="{{ route('product.show', $product->slug) }}"
+                                   class="absolute w-52 h-64 -translate-x-28 -rotate-6 z-10 bg-white rounded-xl shadow-2xl p-3 hover:-translate-y-2 hover:z-30 transition-transform">
+                                    <div class="h-44 w-full bg-gray-100 rounded-lg overflow-hidden">
+                                        @if ($product->image)
+                                            <img src="{{ asset('storage/'.$product->image) }}" alt="{{ $product->name }}" class="h-full w-full object-cover">
+                                        @endif
+                                    </div>
+                                    <p class="mt-2 text-sm font-semibold text-gray-900 line-clamp-1">{{ $product->name }}</p>
+                                    <p class="text-xs text-indigo-600 font-medium">${{ number_format($product->price, 2) }}</p>
+                                </a>
+                            @endif
+
+                            @if ($featuredProducts->get(1))
+                                @php $product = $featuredProducts->get(1); @endphp
+                                <a href="{{ route('product.show', $product->slug) }}"
+                                   class="absolute w-52 h-64 z-20 bg-white rounded-xl shadow-2xl p-3 hover:-translate-y-2 hover:z-30 transition-transform">
+                                    <div class="h-44 w-full bg-gray-100 rounded-lg overflow-hidden">
+                                        @if ($product->image)
+                                            <img src="{{ asset('storage/'.$product->image) }}" alt="{{ $product->name }}" class="h-full w-full object-cover">
+                                        @endif
+                                    </div>
+                                    <p class="mt-2 text-sm font-semibold text-gray-900 line-clamp-1">{{ $product->name }}</p>
+                                    <p class="text-xs text-indigo-600 font-medium">${{ number_format($product->price, 2) }}</p>
+                                </a>
+                            @endif
+
+                            @if ($featuredProducts->get(2))
+                                @php $product = $featuredProducts->get(2); @endphp
+                                <a href="{{ route('product.show', $product->slug) }}"
+                                   class="absolute w-52 h-64 translate-x-28 rotate-6 z-10 bg-white rounded-xl shadow-2xl p-3 hover:-translate-y-2 hover:z-30 transition-transform">
+                                    <div class="h-44 w-full bg-gray-100 rounded-lg overflow-hidden">
+                                        @if ($product->image)
+                                            <img src="{{ asset('storage/'.$product->image) }}" alt="{{ $product->name }}" class="h-full w-full object-cover">
+                                        @endif
+                                    </div>
+                                    <p class="mt-2 text-sm font-semibold text-gray-900 line-clamp-1">{{ $product->name }}</p>
+                                    <p class="text-xs text-indigo-600 font-medium">${{ number_format($product->price, 2) }}</p>
+                                </a>
+                            @endif
+                        </div>
+                    </div>
+                @endif
+            </div>
         </div>
     </section>
 
