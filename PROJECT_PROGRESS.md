@@ -1,10 +1,10 @@
 # Project Progress
 
-Current Task: TASK-059
+Current Task: None — all tasks complete
 
-Last Completed Task: TASK-058
+Last Completed Task: TASK-059
 
-Status: PAUSED
+Status: COMPLETED
 
 ## Completed Tasks
 
@@ -66,10 +66,11 @@ Status: PAUSED
 - [x] TASK-056 Improve admin responsiveness
 - [x] TASK-057 Review application validation
 - [x] TASK-058 Add custom 404 page
+- [x] TASK-059 Add project README
 
 ## Remaining Tasks
 
-- [ ] TASK-059 Add project README
+None. All 59 tasks in the runbook are complete.
 
 ## Notes
 
@@ -790,9 +791,53 @@ all and a real in-app 404 (a nonexistent product slug, via
 `ShopController::show()`'s `firstOrFail()`) return HTTP 404 and render this
 same custom page correctly.
 
-## Pause Notes
+TASK-059 (2026-08-22): The existing `README.md` was the original project
+*proposal* (mentioned Alpine.js, product size/color variants, coupons,
+wishlists, reviews, payment gateway integrations, SMS notifications — none
+of which exist in what was actually built, several explicitly forbidden by
+this runbook). Left as-is it would actively mislead anyone using it to run
+or grade the project, so rewrote it to accurately describe the real app:
+verified stack (confirmed no Alpine.js/JS framework — `resources/js/app.js`
+is an empty stub, `package.json`/`composer.json` have no such dependency),
+an accurate customer/admin feature list derived from `php artisan
+route:list`, installation and `.env`/MySQL setup instructions, and a new
+"Creating an Admin User" section documenting the `tinker` command needed
+to promote a user to admin (since `role` is intentionally not
+mass-assignable — undocumented, this would have been a real dead end for
+anyone trying to reach the admin panel from a fresh clone). Kept the
+Student Information section. Verified every documented command against the
+real app rather than by inspection alone: ran the exact `tinker`
+admin-promotion snippet from the README end-to-end and confirmed it works,
+and confirmed the seeded `test@example.com` / `password` credentials
+mentioned in the README are real (seeded by `DatabaseSeeder` via the
+default Laravel `UserFactory` password).
 
-Paused after 5 commits this session, per the user's instruction ("continue
-and stop after 5 commits"). Working tree is clean, dev database reset to
-seeded state, `PROJECT_PROGRESS.md` up to date. Resume from TASK-059 (Add
-project README) — the final remaining task.
+## Final Verification (2026-08-22)
+
+With all 59 runbook tasks complete, ran a full final check per the
+runbook's completion rules:
+
+- `php artisan migrate:status` — all 8 migrations applied.
+- `php artisan route:list` — all 37 application routes registered
+  (excluding framework/vendor routes).
+- Guest-accessible storefront routes (`/`, `/shop`, `/about`, `/cart`,
+  `/login`, `/register`, a real product details page) all return HTTP 200;
+  a nonexistent URL returns HTTP 404 and renders the custom error page.
+- Auth-gated routes (`/dashboard`, `/checkout`, `/my-orders`, `/admin`)
+  redirect guests (302) and correctly serve authenticated users (200).
+- Admin routes (`/admin`, and the products/categories/orders/customers
+  index and create pages) return 200 for a real admin-role user and 403
+  for a plain authenticated customer — role-based authorization confirmed
+  working end-to-end, not just at the unit-test level.
+- Dev database reset to seeded state (`migrate:fresh --seed`) after
+  verification; no test artifacts left behind.
+
+## Status: COMPLETED
+
+All 59 tasks from `ECOMMERCE_AGENT_RUNBOOK.md` are implemented, tested, and
+committed. The application is a working Laravel + Blade + Tailwind CSS +
+MySQL ecommerce site with a full customer storefront (browsing, cart,
+checkout, order history) and a role-protected admin panel (dashboard,
+category/product/order/customer management). No blockers remain. Any
+further work should come from new requirements rather than this runbook,
+since every listed task is done.

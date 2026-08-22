@@ -1,8 +1,8 @@
-# Basic E-Commerce Web Application
+# ShopNub — Basic E-Commerce Web Application
 
-A basic ecommerce web application developed using Laravel 13, MySQL, Blade, Tailwind CSS, and Alpine.js.
+A basic ecommerce web application built with Laravel, Blade, Tailwind CSS, and MySQL as a university project.
 
-The system allows customers to browse products, manage their shopping cart, place orders, and view their order history. It also includes an admin panel for managing products, categories, inventory, customers, and orders.
+Customers can browse products, search and filter by category, manage a session-based shopping cart, check out, and view their order history. Admins get a separate panel to manage categories, products (with image upload), orders, and customers.
 
 ## Student Information
 
@@ -10,290 +10,75 @@ The system allows customers to browse products, manage their shopping cart, plac
 * **Student ID:** 41240102110
 * **GitHub Repository:** https://github.com/rakib6120/ecommerce-nub
 
-## Project Overview
+## Technology Stack
 
-This project is a basic ecommerce platform designed for academic purposes.
+* **Laravel 13** — routing, authentication, validation, Eloquent ORM, database transactions
+* **Blade** — server-side templates and layouts (storefront and admin)
+* **Tailwind CSS 4** — styling, via `@tailwindcss/vite`
+* **MySQL** — relational database
+* **Vite** — frontend asset bundling
 
-The application contains two primary user roles:
-
-### Customer
-
-Customers can:
-
-* Register and log in
-* Browse available products
-* Search and filter products
-* View product details
-* Select product size or color
-* Add products to the shopping cart
-* Update cart quantities
-* Remove products from the cart
-* Place orders
-* View previous orders
-* Manage profile and delivery information
-
-### Administrator
-
-Administrators can:
-
-* Access the admin dashboard
-* Manage product categories
-* Add, update, and delete products
-* Manage product images
-* Manage product variants
-* Update product stock
-* View customer information
-* Manage customer orders
-* Update order status
-* Manage coupons and discounts
-* View basic sales information
-
-## Tools and Technologies
-
-### Laravel 13
-
-Laravel is used as the main backend framework.
-
-It handles:
-
-* Application routing
-* Authentication
-* Authorization
-* Business logic
-* Form validation
-* Database operations
-* Cart management
-* Order processing
-* File uploads
-* Email notifications
-
-### MySQL
-
-MySQL is used as the relational database management system.
-
-It stores:
-
-* Users
-* Categories
-* Products
-* Product variants
-* Product images
-* Shopping carts
-* Orders
-* Order items
-* Payments
-* Reviews
-* Inventory information
-
-### Blade
-
-Blade is Laravel's server-side templating engine.
-
-It is used to create:
-
-* Main layouts
-* Navigation bars
-* Product pages
-* Cart pages
-* Checkout pages
-* Customer dashboard
-* Admin dashboard
-
-### Tailwind CSS
-
-Tailwind CSS is used for designing and styling the user interface.
-
-It provides:
-
-* Responsive layouts
-* Product grids
-* Forms
-* Buttons
-* Tables
-* Navigation menus
-* Status badges
-* Mobile-friendly designs
-
-### Alpine.js
-
-Alpine.js is used to provide lightweight frontend interactivity.
-
-It is used for:
-
-* Dropdown menus
-* Mobile navigation
-* Product image galleries
-* Product quantity controls
-* Modal windows
-* Cart drawers
-* Size and color selection
-* Confirmation messages
-
-### Vite
-
-Vite is used to compile and bundle the project's CSS and JavaScript files.
-
-### Git and GitHub
-
-Git is used for version control, while GitHub is used to store and manage the project repository.
+No frontend JavaScript framework (React, Vue, Alpine.js) or admin template is used — plain Blade and Tailwind throughout, kept intentionally simple.
 
 ## Main Features
 
-### Authentication
+### Customer
 
-* Customer registration
-* Customer login
-* Customer logout
-* Password reset
-* Profile management
-* Admin authentication
+* Browse the home page, shop page, and About Us page
+* Search products by name and filter by category (combinable, server-side)
+* View product details (image, price, description, stock)
+* Register, log in, and log out
+* Session-based shopping cart: add, update quantity, remove items; live cart count in the navbar
+* Checkout with delivery details, validated server-side
+* Order placement: server-side stock re-check, total calculation, and stock deduction inside a database transaction
+* Order confirmation page
+* Customer dashboard with account info
+* "My Orders" list and per-order details, scoped to the logged-in customer only
 
-### Product Management
+### Admin
 
-* Product listing
-* Product details
-* Product categories
-* Product images
-* Product variants
-* Product pricing
-* Product stock management
-* Featured products
-* Active and inactive product status
+Accessible only to users with the `admin` role (see [Creating an Admin User](#creating-an-admin-user) below):
 
-### Search and Filtering
+* Dashboard with product/category/order/customer counts and the 5 most recent orders
+* Category management: list, create, edit, delete (blocked if products still belong to the category)
+* Product management: list, create, edit, delete, with image upload (JPG/PNG/WEBP, max 2MB)
+* Order management: list, view details, update status (pending/processing/completed/cancelled)
+* Customer management: list (customers only, not other admins), with per-customer order history and total spent
 
-Customers can search and filter products using:
+## Requirements
 
-* Product name
-* Category
-* Price range
-* Size
-* Color
-* Availability
-
-### Shopping Cart
-
-* Add products to cart
-* Update product quantity
-* Remove products from cart
-* Calculate subtotal
-* Calculate delivery charge
-* Calculate discount
-* Calculate final total
-
-### Checkout
-
-The checkout process includes:
-
-* Customer information
-* Phone number
-* Email address
-* Delivery address
-* City and area
-* Customer notes
-* Delivery charge
-* Payment method
-* Order confirmation
-
-### Order Management
-
-Available order statuses may include:
-
-* Pending
-* Confirmed
-* Processing
-* Shipped
-* Delivered
-* Cancelled
-* Returned
-
-Available payment statuses may include:
-
-* Unpaid
-* Pending
-* Paid
-* Failed
-* Refunded
-
-### Inventory Management
-
-* Track available product stock
-* Reduce stock after order placement
-* Restore stock after eligible order cancellation
-* Prevent customers from ordering unavailable quantities
-* Display low-stock products in the admin panel
-
-### Admin Dashboard
-
-The admin dashboard may display:
-
-* Total products
-* Total customers
-* Total orders
-* Pending orders
-* Delivered orders
-* Total sales
-* Recent orders
-* Low-stock products
-
-## Project Requirements
-
-Before installing the project, make sure the following software is installed:
-
-* PHP 8.3 or later
+* PHP 8.3+
 * Composer
 * MySQL
-* Node.js
-* NPM
+* Node.js and npm
 * Git
 
 ## Installation
 
-### 1. Clone the Repository
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/rakib6120/ecommerce-nub.git
-```
-
-### 2. Enter the Project Directory
-
-```bash
 cd ecommerce-nub
 ```
 
-### 3. Install PHP Dependencies
+### 2. Install dependencies
 
 ```bash
 composer install
-```
-
-### 4. Install Frontend Dependencies
-
-```bash
 npm install
 ```
 
-### 5. Create the Environment File
+### 3. Set up the environment file
 
 ```bash
 cp .env.example .env
-```
-
-For Windows Command Prompt:
-
-```bash
-copy .env.example .env
-```
-
-### 6. Generate the Application Key
-
-```bash
 php artisan key:generate
 ```
 
-### 7. Configure the Database
+### 4. Configure the database
 
-Open the `.env` file and update the database configuration:
+Create a MySQL database, then edit `.env`:
 
 ```env
 DB_CONNECTION=mysql
@@ -304,274 +89,84 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
-Create a MySQL database named:
-
-```text
-ecommerce_nub
-```
-
-### 8. Run Database Migrations
-
-```bash
-php artisan migrate
-```
-
-To migrate the database and insert sample data:
+### 5. Run migrations and seed sample data
 
 ```bash
 php artisan migrate --seed
 ```
 
-### 9. Create the Storage Link
+This creates all tables and seeds 4 categories, 10 products, and one test customer account (`test@example.com` / `password`).
+
+### 6. Link storage for product images
 
 ```bash
 php artisan storage:link
 ```
 
-This command makes uploaded product images publicly accessible.
+Required for uploaded product images to be publicly accessible.
 
-### 10. Start the Laravel Development Server
+### 7. Build frontend assets
 
-```bash
-php artisan serve
-```
-
-The application will normally be available at:
-
-```text
-http://127.0.0.1:8000
-```
-
-### 11. Start the Vite Development Server
-
-Open another terminal and run:
+For development (with hot reload):
 
 ```bash
 npm run dev
 ```
 
-## Production Build
-
-To compile frontend assets for production, run:
+For a one-off production build:
 
 ```bash
 npm run build
 ```
 
-## Common Development Commands
-
-Run the Laravel application:
+### 8. Run the app
 
 ```bash
 php artisan serve
 ```
 
-Run frontend development assets:
+Visit `http://127.0.0.1:8000`.
+
+## Creating an Admin User
+
+New registrations always get the `customer` role (this is intentional — `role` is not mass-assignable, so it can't be set through the registration form). To promote a user to admin, register normally through the app, then run:
 
 ```bash
-npm run dev
+php artisan tinker --execute="
+\$user = App\Models\User::where('email', 'your-email@example.com')->first();
+\$user->role = 'admin';
+\$user->save();
+"
 ```
 
-Run database migrations:
+Log in with that account and visit `/admin`.
+
+## Useful Commands
 
 ```bash
-php artisan migrate
-```
-
-Reset and rebuild the database:
-
-```bash
+# Reset the database and reseed sample data
 php artisan migrate:fresh --seed
-```
 
-Clear application caches:
+# List all routes
+php artisan route:list
 
-```bash
+# Run the test suite (if tests are present)
+php artisan test
+
+# Clear cached config/views/routes
 php artisan optimize:clear
 ```
 
-Run all automated tests:
+## Project Structure Notes
 
-```bash
-php artisan test
-```
+* `app/Http/Controllers/` — storefront controllers at the top level, admin controllers under `Admin/`
+* `app/Models/` — `User`, `Category`, `Product`, `Order`, `OrderItem`
+* `app/Services/CartService.php` — the session-based cart (no `carts` database table; cart contents live in the session)
+* `resources/views/layouts/` — separate `storefront.blade.php` and `admin.blade.php` layouts
+* `resources/views/storefront/`, `resources/views/admin/` — page views, mirroring the controller structure
+* `resources/views/components/` — shared Blade components (`flash-messages`, `empty-state`)
 
-## Suggested Database Tables
+## Notes
 
-The project may contain the following database tables:
-
-```text
-users
-addresses
-categories
-brands
-products
-product_images
-product_variants
-carts
-cart_items
-wishlists
-coupons
-coupon_usages
-orders
-order_items
-payments
-shipments
-reviews
-inventory_movements
-settings
-banners
-```
-
-## Suggested Project Structure
-
-```text
-app/
-├── Actions/
-├── Enums/
-├── Http/
-│   ├── Controllers/
-│   │   ├── Admin/
-│   │   ├── Customer/
-│   │   └── Storefront/
-│   ├── Middleware/
-│   └── Requests/
-├── Models/
-├── Notifications/
-├── Policies/
-├── Services/
-└── View/
-    └── Components/
-
-resources/
-├── css/
-│   └── app.css
-├── js/
-│   └── app.js
-└── views/
-    ├── admin/
-    ├── auth/
-    ├── cart/
-    ├── checkout/
-    ├── components/
-    ├── layouts/
-    ├── orders/
-    └── products/
-```
-
-## Main Application Workflow
-
-```text
-Customer visits the website
-        ↓
-Customer browses products
-        ↓
-Customer views product details
-        ↓
-Customer selects product variant
-        ↓
-Customer adds product to cart
-        ↓
-Customer proceeds to checkout
-        ↓
-System validates product stock
-        ↓
-System calculates the order total
-        ↓
-Customer provides delivery information
-        ↓
-Order is created
-        ↓
-Product stock is updated
-        ↓
-Customer receives order confirmation
-        ↓
-Administrator processes the order
-```
-
-## Security Considerations
-
-The project should implement:
-
-* CSRF protection
-* Server-side form validation
-* Password hashing
-* Authentication middleware
-* Admin authorization
-* Secure file upload validation
-* Database transactions
-* Rate limiting
-* Protection against mass assignment
-* Escaping of customer-generated content
-* Secure storage of environment credentials
-
-Sensitive information must be stored in the `.env` file and must not be committed to GitHub.
-
-Examples include:
-
-```env
-DB_PASSWORD=
-MAIL_PASSWORD=
-PAYMENT_SECRET_KEY=
-```
-
-## Testing
-
-The project should contain tests for:
-
-* Customer registration
-* Customer login
-* Product listing
-* Product search
-* Adding products to the cart
-* Updating cart quantities
-* Preventing orders above available stock
-* Checkout validation
-* Order creation
-* Inventory deduction
-* Admin authorization
-* Product creation
-* Order status updates
-
-Run the tests using:
-
-```bash
-php artisan test
-```
-
-## Future Improvements
-
-The following features may be added in future versions:
-
-* SSLCommerz payment gateway
-* bKash payment integration
-* Nagad payment integration
-* Courier API integration
-* Product reviews and ratings
-* Customer wishlist
-* Advanced coupon management
-* Multiple delivery methods
-* Email and SMS notifications
-* Sales reports
-* Product recommendations
-* Multiple warehouse support
-* Refund management
-* Reward points
-* REST API
-* Mobile application support
-
-## Repository
-
-Project source code:
-
-https://github.com/rakib6120/ecommerce-nub
-
-## Author
-
-**Rakib Hossain**
-
-Student ID: **41240102110**
-
-## License
-
-This project is developed for academic and educational purposes.
+* This project does not integrate a real payment gateway — checkout is Cash on Delivery only.
+* Product/category/order data is intentionally simple (no variants, coupons, reviews, or wishlists) to keep the scope appropriate for a university submission.
